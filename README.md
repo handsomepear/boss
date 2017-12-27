@@ -2,7 +2,7 @@
 
 
 ## 项目布局
-
+```
 .  
 ├── build                                       // webpack配置文件<br>
 ├── config                                      // 项目打包路径<br>
@@ -22,3 +22,4 @@
 ├── favicon.ico                                 // 图标 <br>
 ├── index.html                                  // 入口html文件 <br>
 .
+```
