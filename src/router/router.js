@@ -2,30 +2,19 @@
 import App from '../App'
 
 // 按需加载路由
-const user = r => require.ensure([], () => r(require('../components/user')), 'user')
-
-const seller = r => require.ensure([], () => r(require('../components/seller')), 'seller')
-
-const order = r => require.ensure([], () => r(require('../components/order')), 'order')
-
+const Login = r => require.ensure([], () => r(require('@/pages/Login/Login')), 'Login')
+const Home = r => require.ensure([], () => r(require('@/pages/Home/Home')), 'Home')
 
 const routes = [
-
+  // 登陆页面
   {
-    path: '',
-    redirect: '/seller'
+    path: '/login',
+    component: Login
   },
+  // 登录之后首页
   {
-    path: '/seller',
-    component: seller
-  },
-  {
-    path: '/order',
-    component: order
-  },
-  {
-    path: '/user',
-    component: user
+    path: '/home',
+    component: Home
   }
 ];
 export default routes;
