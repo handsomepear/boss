@@ -3,7 +3,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
-import routes from './router/router'
+import {router} from './router'
+import store from './store/index.js'
 import iview from 'iview'
 import 'iview/dist/styles/iview.css'
 import { fetch, post } from './util/http.js'
@@ -13,18 +14,14 @@ Vue.prototype.$fetch = fetch;
 
 // 封装axios的post请求
 Vue.prototype.$post = post;
-Vue.config.productionTip = false
 
+Vue.config.productionTip = false
 Vue.use(iview)
-Vue.use(VueRouter)
-const router = new VueRouter({
-  routes,
-  mode: "hash"
-})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

@@ -1,5 +1,7 @@
 <template>
-  <Sider></Sider>
+  <div class="home">
+    <Card>这是首页</Card>  
+  </div>
 </template>
 
 
