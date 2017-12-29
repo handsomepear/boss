@@ -8,7 +8,6 @@
     </div>
     <div class="single-page-con">
       <div class="single-page">
-        <p style="font: 700 20px/100px 'Microsoft Yahei'">下面是single-page</p>
         <router-view></router-view>
       </div>
     </div>
