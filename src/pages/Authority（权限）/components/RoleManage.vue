@@ -1,3 +1,14 @@
+<style lang="less">
+.role-manage {
+  .button-con {
+    margin-right: 100px;
+  }
+  .table-con {
+    text-align: right;
+  }
+}
+</style>
+
 <template>
   <div class="role-manage">
     <div class="manage-top">
@@ -7,7 +18,7 @@
             <Input v-model="roleName" placeholder="请输入角色名称" />
           </FormItem>
           <FormItem style="text-align: right">
-            <div class="button-con" style="margin-right: 100px">
+            <div class="button-con">
               <Button type="primary" style="margin-right: 20px">查询</Button>
               <Button type="primary">重置</Button>
             </div>
@@ -15,17 +26,16 @@
         </Form>
       </Card>
     </div>
-    <div class="table-con">
+    <div class="data-con">
       <Card>
-        <div class="add-role">
-          <Button type="primary" @click="modal1=true">新增角色</Button>
-          <!-- 添加角色 -->
-          <AddRole v-if="modal1"></AddRole>
-        </div>
+        <!-- 添加角色 -->
+        <AddRole></AddRole>
         <div class="table-con" style="text-align: right">
+          <!-- 分页插件和表格内容显示 -->
           <Page :total="totalPage" show-sizer :page-size="pageSize" :page-size-opts="pageSizeOpts"></Page>
-          <Table border :columns="columns1" :data="data1"></Table>
+          <Table border :columns="columns1" :data="data1" style="margin: 20px 0"></Table>
           <Page :total="totalPage" show-sizer :page-size="pageSize" :page-size-opts="pageSizeOpts"></Page>
+          <!-- 如何把两个page组件关联起来？ -->
         </div>
       </Card>
     </div>
@@ -34,7 +44,7 @@
 </template>
 
 <script>
-import AddRole from '../AddRole'
+import AddRole from "./AddRole"; // 添加角色
 export default {
   components: {
     AddRole
@@ -44,7 +54,7 @@ export default {
       modal1: false,
       roleName: "handsonZPS", // 角色名称
       totalPage: 300,
-      pageSize: 15, 
+      pageSize: 15,
       pageSizeOpts: [15, 50, 100],
       columns1: [
         {
@@ -162,12 +172,12 @@ export default {
           .creater}<br>Address：${this.data1[index].createTime}`
       });
     },
-    showInfo(index){
+    showInfo(index) {
       this.$Modal.info({
-        title: 'Info',
+        title: "Info",
         content: `角色名称：${this.data1[index].roleName}<br>创建人：${this.data1[index]
           .creater}<br>Address：${this.data1[index].createTime}`
-      })
+      });
     },
     remove(index) {
       this.data1.splice(index, 1);

@@ -1,30 +1,36 @@
-<style>
-
+<style lang="less" scoped>
+.tips {
+  padding-left: 18px;
+  margin-bottom: 24px;
+}
 </style>
 
 
 <template>
-  <Modal v-model="testShow" title="新增角色" width="60%">
-    <Form :label-width="100" style="width:300px">
-      <FormItem label="※角色名称：">
-        <Input v-model="roleName" />
-      </FormItem>
-    </Form>
-    <p style="padding-left: 18px; margin-bottom: 24px">※权限设定：勾选页面标签，该页面可见；页面可见时，勾选按钮标签，该按钮可见可操作。</p>
-    <!-- 权限设定表格 -->
-    <Table  border :columns="authorityColums" :data="authorityData"></Table>
-  </Modal>
+  <div class="add-role">
+    <Button type="primary" @click="showAddRoleModal">新增角色</Button>
+    <!-- 添加角色 -->
+    <Modal v-model="showAddRole" title="新增角色" width="60%">
+      <Form :label-width="100" style="width:300px">
+        <FormItem label="※角色名称：">
+          <Input v-model="roleName" />
+        </FormItem>
+      </Form>
+      <span class="tips">※权限设定：勾选页面标签，该页面可见；页面可见时，勾选按钮标签，该按钮可见可操作。</span>
+      <!-- 权限设定表格 -->
+      <Table border :columns="authorityColums" :data="authorityData"></Table>
+    </Modal>
+  </div>
+
 </template>
 
 
 <script>
 export default {
-  props: {
-
-  },
+  props: {},
   data() {
     return {
-      testShow: true,
+      showAddRole: false,
       roleName: "handsonzps",
       single: true,
       authorityColums: [
@@ -51,7 +57,7 @@ export default {
                 h("Checkbox", { label: item.label }, [h("span", [item.text])])
               );
             });
-            return h("CheckboxGroup",{}, checkboxArr);
+            return h("CheckboxGroup", {}, checkboxArr);
           }
         }
       ],
@@ -79,7 +85,7 @@ export default {
         },
         {
           pageTag: "员工账号",
-           buttonTag: [
+          buttonTag: [
             {
               label: "twitter",
               text: "新增角色"
@@ -104,7 +110,7 @@ export default {
         },
         {
           pageTag: "入驻审核",
-           buttonTag: [
+          buttonTag: [
             {
               label: "twitter",
               text: "新增申请"
@@ -126,7 +132,11 @@ export default {
       ]
     };
   },
-  mounted() {
+  mounted() {},
+  methods: {
+    showAddRoleModal(){
+      this.showAddRole = true;
+    }
   }
 };
 </script>

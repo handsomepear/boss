@@ -8,7 +8,9 @@
     </div>
     <div class="single-page-con">
       <div class="single-page">
-        <router-view></router-view>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </div>
     </div>
   </div>
@@ -16,7 +18,7 @@
 
 
 <script>
-import mainHeader from "@/components/Header/Header.vue"
+import mainHeader from "@/components/Header/Header.vue";
 import Sider from "@/components/Sider/Sider.vue";
 export default {
   data() {
