@@ -129,6 +129,7 @@ export default {
                   on: {
                     click: () => {
                       // 查看详情
+                      console.log(this)
                       this.showInfo(params.index);
                     }
                   }

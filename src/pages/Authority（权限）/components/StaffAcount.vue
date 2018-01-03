@@ -1,6 +1,6 @@
 <style scoped>
 .button-con {
-  margin-right: 100px;
+  margin-right: 200px;
 }
 </style>
 <template>
@@ -9,19 +9,19 @@
       <Card>
         <Form inline :label-width="100" ref="formStaff" v-model="formItem">
           <FormItem label="员工姓名：">
-            <Input type="text" placeholder="请直接输入员工实名" v-model="formItem.staffName" />
+            <Input  placeholder="请直接输入员工实名" v-model="formItem.staffName" />
           </FormItem>
           <FormItem label="员工手机：">
-            <Input type="text" v-model="formItem.staffPhone" />
+            <Input  v-model="formItem.staffPhone" />
           </FormItem>
           <FormItem label="角色名称：">
-            <Input type="text" v-model="formItem.roleName" />
+            <Input v-model="formItem.roleName" />
           </FormItem>
           <FormItem label="直属领导姓名：">
-            <Input type="text" placeholder="请直接输入员工实名" v-model="formItem.leaderName" />
+            <Input  placeholder="请直接输入员工实名" v-model="formItem.leaderName" />
           </FormItem>
           <FormItem label="登录名：">
-            <Input type="text" placeholder="请直接输入员工登录名" v-model="formItem.username" />
+            <Input  placeholder="请直接输入员工登录名" v-model="formItem.username" />
           </FormItem>
           <FormItem label="账号状态：">
             <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
@@ -133,6 +133,11 @@ export default {
                     },
                     style: {
                       "margin-right": "5px"
+                    },
+                    on: {
+                      click() {
+                        this.revise(params);
+                      }
                     }
                   },
                   "修改"
@@ -263,14 +268,18 @@ export default {
       // 发送个请求 把查询的传递过去 然后拉过来渲染一下
       console.log(JSON.stringify(filterObj));
     },
-    /* 冻结账号 */
-    block(params) {
-      params.row.state = !params.row.state;
-    },
     /* 表单重置 */
     handleReset(name) {
       console.log(this.$refs[name]);
-      this.$refs[name].resetFields();
+      // this.$refs[name].resetFields();
+    },
+    /* 修改信息 */
+    revise(revise){
+      // 弹窗 + 表单回填
+    },
+    /* 冻结账号 */
+    block(params) {
+      params.row.state = !params.row.state;
     }
   }
 };

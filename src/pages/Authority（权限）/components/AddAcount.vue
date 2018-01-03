@@ -33,7 +33,7 @@
             <Col span="4">
             <Input v-model="phone" />
             </Col>
-            <Col span="16" offset="1">
+            <Col span="18" offset="1">
             <span class="msg">只允许11位数字，请填写该员工可联系手机号，以便接收系统通知短信，以及重置密码。暂不支持非大陆手机号</span>
             </Col>
           </Row>
@@ -41,7 +41,7 @@
         <FormItem label="※ 员工邮箱：">
           <Row>
             <Col span="4">
-            <Input v-model="email" />
+            <Input v-model="email" type="email" />
             </Col>
             <Col span="16" offset="1">
             <span class="msg">只允许英文字符、数字或特殊符号，请填写该员工公司邮箱地址，以便接收系统通知短信，以及重置密码</span>
@@ -65,7 +65,7 @@
         <FormItem label="※ 登录名：">
           <Row>
             <Col span="4">
-            <Input v-model="username" />
+            <Input v-model="username" type="text"/>
             </Col>
             <Col span="16" offset="1">
             <span class="msg">只允许英文字符、数字，建议采用员工姓名拼音作为登录名</span>
