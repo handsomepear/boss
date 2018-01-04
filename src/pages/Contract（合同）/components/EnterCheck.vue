@@ -9,31 +9,31 @@
           <Row>
             <Col span="5">
             <FormItem label="入驻人：">
-              <Input type="text" placeholder="请输入入驻人姓名" v-model="formItem.staffName" />
+              <Input type="text" placeholder="请输入入驻人姓名" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="入驻人手机：">
-              <Input type="text" v-model="formItem.staffPhone" />
+              <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="合同编号：">
-              <Input type="text" v-model="formItem.roleName" placeholder="可输入部分编号数字" />
+              <Input type="text" v-model="formItem.roleName" placeholder="可输入部分编号数字" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
-            <Col span="11">
+            <Col span="6">
             <FormItem label="店铺名称：">
-              <Input type="text" placeholder="该商户成功入驻后，名下任一店铺名称" v-model="formItem.leaderName" />
+              <Input type="text" placeholder="该商户成功入驻后，名下任一店铺名称" v-model="formItem.leaderName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="4">
             <FormItem label="行政区域：">
-              <Select placeholder="请选择" v-model="formItem.acountState" >
+              <Select placeholder="请选择" v-model="formItem.acountState"  size="small">
                 <Option value="active">海淀区</Option>
                 <Option value="blocked">朝阳区</Option>
                 <Option value="blocked">西城区</Option>
@@ -44,7 +44,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="账号状态：">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">全部状态</Option>
                 <Option value="blocked">通过</Option>
                 <Option value="blocked">驳回</Option>

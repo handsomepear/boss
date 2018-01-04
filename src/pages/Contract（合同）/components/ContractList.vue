@@ -7,43 +7,43 @@
       <Card>
         <Form :label-width="90" ref="contractForm" v-model="formItem" label-position="left">
           <Row>
-            <Col span="4">
+            <Col span="5">
             <FormItem label="合同编号：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" />
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
+            <Col span="5" offset="1">
             <FormItem label="甲方名称：">
-              <Input type="text" v-model="formItem.staffPhone" />
+              <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
+            <Col span="5" offset="1">
             <FormItem label="代表人：">
-              <Input type="text" v-model="formItem.roleName" />
+              <Input type="text" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
+            <Col span="5" offset="1">
             <FormItem label="代表人手机号：" :label-width="100">
-              <Input type="text" v-model="formItem.staffName" />
+              <Input type="text" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
-            <Col span="4">
+            <Col span="5">
             <FormItem label="店铺名称：">
-              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" />
+              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small" />
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
+            <Col span="5" offset="1">
             <FormItem label="销售人员：">
-              <Input type="text" placeholder="请输入销售人员姓名" v-model="formItem.leaderName" />
+              <Input type="text" placeholder="请输入销售人员姓名" v-model="formItem.leaderName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="4">
             <FormItem label="合作模式：">
-              <Select placeholder="请选择" v-model="formItem.acountState" >
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">个人合作</Option>
                 <Option value="blocked">机构合作</Option>
               </Select>
@@ -51,7 +51,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="合同状态：">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">待审查</Option>
                 <Option value="blocked">通过</Option>
                 <Option value="blocked">驳回</Option>
@@ -62,7 +62,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="合同变更来源：" :label-width="100">
-              <Select placeholder="请选择" v-model="formItem.acountState" >
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">BOSS</Option>
                 <Option value="blocked">商户端</Option>
               </Select>
@@ -73,12 +73,12 @@
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
             <Col span="6">
             <FormItem label="合同结束时间（始）：" :label-width="132">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest"></DatePicker>
+              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="6" offset="1">
             <FormItem label="合同结束时间（止）：" :label-width="132">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" ></DatePicker>
+              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="8" offset="1" style="text-align: right">
@@ -96,9 +96,8 @@
     <div class="data-con">
       <Card>
         <!-- 添加新账号 -->
-        <!-- <Button type="primary">新增模板</Button> -->
-        <!-- <AddEnter></AddEnter> -->
-        <!-- <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails> -->
+        <AddContract></AddContract>
+        <ContractDetails :detailsShow="detailsShow" v-if="detailsShow" @hideContractDetailsModal="hideContractDetailsModal"></ContractDetails>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -112,22 +111,16 @@
 </template>
 
 <script>
-import AddEnter from './AddEnter'
+import AddContract from "./AddContract";
+import ContractDetails from "./ContractDetails";
 export default {
   components: {
-    AddEnter
+    AddContract
   },
   data() {
     return {
-      optionsTest: {
-        disabledDate(date) {
-          
-        }
-      },
-      optionsTest1: {
-        disabledDate(date) {
-        }
-      },
+      optionsTest: {},
+      optionsTest1: {},
       formItem: {
         contractNo: "", // 合同编号
         ownerName: "", // 甲方民称
@@ -179,19 +172,19 @@ export default {
             title: "合同结束日期",
             key: "endDate"
           },
-           {
+          {
             title: "合同创建时间",
             key: "contractNO"
           },
-           {
+          {
             title: "销售人员",
             key: "saler"
           },
-           {
+          {
             title: "合同状态",
             key: "contractState"
           },
-           {
+          {
             title: "合同变更来源",
             key: "constractSrc"
           },
@@ -202,96 +195,98 @@ export default {
             align: "center",
             // 创建row上面的按钮
             render: (h, params) => {
-              return h("div", 
-              {
-                style: {
-                  "line-height": '40px'
-                }
-              },
-              [
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "primary",
-                      size: "small"
-                    },
-                    style: {
-                      "margin-right": "5px"
-                    },
-                    on: {
-                      click: () => {
-                        console.log(this);
-                        this.revise(params);
+              return h(
+                "div",
+                {
+                  style: {
+                    "line-height": "40px"
+                  }
+                },
+                [
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "primary",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click: () => {
+                          console.log(this);
+                          this.revise(params);
+                        }
                       }
-                    }
-                  },
-                  "修改"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
                     },
-                    style: {
-                      "margin-right": "5px"
-                    },
-                    on: {
-                      click: () => {
-                        this.showEnterDetailsModal();
+                    "修改"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click: () => {
+                          this.showEnterDetailsModal();
+                        }
                       }
-                    }
-                  },
-                  "审查"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
                     },
-                    style: {
-                      "margin-right": "5px"
+                    "审查"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click() {}
+                      }
                     },
-                    on: {
-                      click() {}
-                    }
-                  },
-                  "中止合同"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
+                    "中止合同"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click() {}
+                      }
                     },
-                    style: {
-                      "margin-right": "5px"
+                    "销售人员变更"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      on: {
+                        click() {}
+                      }
                     },
-                    on: {
-                      click() {}
-                    }
-                  },
-                  "销售人员变更"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
-                    },
-                    on: {
-                      click() {}
-                    }
-                  },
-                  "详情"
-                )
-              ]);
+                    "详情"
+                  )
+                ]
+              );
             }
           }
         ],
@@ -387,10 +382,10 @@ export default {
       params.row.state = !params.row.state;
     },
     /* 弹出详情页 */
-    showEnterDetailsModal() {
+    showContractDetailsModal() {
       // this.detailsShow = true;
     },
-    hideEnterDetailsModal() {
+    hideContractDetailsModal() {
       // this.detailsShow = false;
     }
   }

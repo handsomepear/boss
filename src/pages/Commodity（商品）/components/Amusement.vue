@@ -9,46 +9,46 @@
           <Row>
             <Col span="5">
             <FormItem label="SPUID：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" />
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="SKUID：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffPhone" />
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="商品名称：">
-              <Input type="text" v-model="formItem.roleName" />
+              <Input type="text" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="库存：">
-              <Input type="text" placeholder="小于等于该数字的商品" v-model="formItem.roleName" />
+              <Input type="text" placeholder="小于等于该数字的商品" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="5">
             <FormItem label="店铺名称：">
-              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" />
+              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small" />
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
+            <Col span="5" offset="1">
             <FormItem label="创建人：">
-              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" />
+              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small" />
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
+            <Col span="5" offset="1">
             <FormItem label="编辑人：">
-              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" />
+              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="4">
             <FormItem label="卡类型：">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="1">单次卡</Option>
                 <Option value="2">多次卡</Option>
                 <Option value="2">储值卡</Option>
@@ -57,7 +57,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="商品状态：">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="11">待编辑</Option>
                 <Option value="11">待精编</Option>
                 <Option value="11">待审查</Option>
@@ -71,7 +71,7 @@
             </Col>
             <Col span="4"  offset="1">
             <FormItem label="商品变更来源：" :label-width="100">
-              <Select placeholder="请选择" v-model="formItem.acountState" >
+              <Select placeholder="请选择" v-model="formItem.acountState"  size="small">
                 <Option value="active">BOSS</Option>
                 <Option value="blocked">商户端</Option>
               </Select>
@@ -79,7 +79,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="商品类型：" >
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">CRM商品</Option>
                 <Option value="blocked">团购代销商品</Option>
               </Select>

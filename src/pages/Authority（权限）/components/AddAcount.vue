@@ -21,7 +21,7 @@
         <FormItem label="※ 员工姓名：">
           <Row>
             <Col span="4">
-            <Input v-model="fullname" />
+            <Input v-model="fullname" size="small" />
             </Col>
             <Col span="16" offset="1">
             <span class="msg">只允许汉字或英文字符，必须输入员工的真实姓名，最长不可超过10个字符</span>
@@ -31,7 +31,7 @@
         <FormItem label="※ 员工手机：">
           <Row>
             <Col span="4">
-            <Input v-model="phone" />
+            <Input v-model="phone" size="small" />
             </Col>
             <Col span="18" offset="1">
             <span class="msg">只允许11位数字，请填写该员工可联系手机号，以便接收系统通知短信，以及重置密码。暂不支持非大陆手机号</span>
@@ -41,7 +41,7 @@
         <FormItem label="※ 员工邮箱：">
           <Row>
             <Col span="4">
-            <Input v-model="email" type="email" />
+            <Input v-model="email" type="email" size="small" />
             </Col>
             <Col span="16" offset="1">
             <span class="msg">只允许英文字符、数字或特殊符号，请填写该员工公司邮箱地址，以便接收系统通知短信，以及重置密码</span>
@@ -51,7 +51,7 @@
         <FormItem label="直属领导：">
           <Row>
             <Col span="4">
-            <Select v-model="leader">
+            <Select v-model="leader" size="small">
               <Option value="方文超">方文超</Option>
               <Option value="费国庆">费国庆</Option>
               <Option value="马丽">马丽</Option>
@@ -65,7 +65,7 @@
         <FormItem label="※ 登录名：">
           <Row>
             <Col span="4">
-            <Input v-model="username" type="text"/>
+            <Input v-model="username" type="text size="small""/>
             </Col>
             <Col span="16" offset="1">
             <span class="msg">只允许英文字符、数字，建议采用员工姓名拼音作为登录名</span>

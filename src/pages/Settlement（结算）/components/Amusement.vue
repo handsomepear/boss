@@ -9,29 +9,29 @@
           <Row>
             <Col span="4">
             <FormItem label="合同编号：">
-              <Input type="text" v-model="formItem.staffName" />
+              <Input type="text" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="4" offset="1">
             <FormItem label="店铺名称：">
-              <Input type="text" v-model="formItem.staffPhone" />
+              <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="4" offset="1">
             <FormItem label="结算单编号：">
-              <Input type="text" v-model="formItem.roleName" />
+              <Input type="text" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
             <Col span="4" offset="1">
             <FormItem label="销售人员：">
-              <Input type="text" v-model="formItem.roleName" />
+              <Input type="text" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="4" >
             <FormItem label="结算单状态：">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="1">待商户确认</Option>
                 <Option value="2">待主管确认</Option>
                 <Option value="2">待总监确认</Option>
@@ -44,7 +44,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="发票状态：">
-              <Select v-model="formItem.acountState">
+              <Select v-model="formItem.acountState" size="small">
                 <Option value="11">已开发票</Option>
                 <Option value="12">未开发票</Option>
               </Select>
@@ -55,12 +55,12 @@
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
             <Col span="6">
             <FormItem label="账期结束时间（始）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest"></DatePicker>
+              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="6" offset="1">
             <FormItem label="账期结束时间（止）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1"></DatePicker>
+              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="8" offset="1" style="text-align: right">

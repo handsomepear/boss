@@ -9,36 +9,36 @@
           <Row>
             <Col span="5">
             <FormItem label="合同编号：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" />
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small"/>
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="入驻人姓名：">
-              <Input type="text" v-model="formItem.staffPhone" />
+              <Input type="text" v-model="formItem.staffPhone" size="small"/>
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="销售人员：">
-              <Input type="text" v-model="formItem.roleName" placeholder="请输入销售人员姓名"/>
+              <Input type="text" v-model="formItem.roleName" placeholder="请输入销售人员姓名" size="small"/>
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="5">
             <FormItem label="店铺名称：">
-              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" />
+              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small"/>
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="店铺联系方式：" :label-width="100">
-              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" />
+              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small"/>
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="5">
             <FormItem label="商户业态：">
-              <Select placeholder="请选择" v-model="formItem.acountState" >
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small" >
                 <Option value="1">团购代销</Option>
                 <Option value="2">CRM</Option>
               </Select>
@@ -46,7 +46,7 @@
             </Col>
             <Col span="5" offset="1">
             <FormItem label="店铺状态：">
-              <Select placeholder="全部状态" v-model="formItem.acountState" >
+              <Select placeholder="全部状态" v-model="formItem.acountState" size="small" >
                 <Option value="11">待审查</Option>
                 <Option value="12">服务中</Option>
                 <Option value="13">驳回</Option>
@@ -57,7 +57,7 @@
             </Col>
             <Col span="5" offset="1">
             <FormItem label="店铺变更来源：" :label-width="100">
-              <Select placeholder="请选择" v-model="formItem.acountState" >
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small" >
                 <Option value="active">BOSS</Option>
                 <Option value="blocked">商户端</Option>
               </Select>
@@ -66,17 +66,7 @@
           </Row>
           <Row>
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
-            <Col span="6">
-            <FormItem label="软件服务到期日（始）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest"></DatePicker>
-            </FormItem>
-            </Col>
-            <Col span="6" offset="1">
-            <FormItem label="软件服务到期日（止）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" ></DatePicker>
-            </FormItem>
-            </Col>
-            <Col span="8" offset="1" style="text-align: right">
+            <Col span="22" offset="1" style="text-align: right">
             <FormItem>
               <div class="button-con">
                 <Button type="primary" @click="submit">查询</Button>
@@ -165,14 +155,6 @@ export default {
           {
             title: "店铺状态",
             key: "shopName"
-          },
-          {
-            title: "软件服务到期日",
-            key: "startDate"
-          },
-          {
-            title: "硬件服务到期日",
-            key: "endDate"
           },
            {
             title: "销售人员",

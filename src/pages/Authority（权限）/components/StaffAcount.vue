@@ -9,22 +9,22 @@
       <Card>
         <Form inline :label-width="100" ref="formStaff" v-model="formItem">
           <FormItem label="员工姓名：">
-            <Input  placeholder="请直接输入员工实名" v-model="formItem.staffName" />
+            <Input  placeholder="请直接输入员工实名" v-model="formItem.staffName" size="small" />
           </FormItem>
           <FormItem label="员工手机：">
-            <Input  v-model="formItem.staffPhone" />
+            <Input  v-model="formItem.staffPhone" size="small" />
           </FormItem>
           <FormItem label="角色名称：">
-            <Input v-model="formItem.roleName" />
+            <Input v-model="formItem.roleName" size="small" />
           </FormItem>
           <FormItem label="直属领导姓名：">
-            <Input  placeholder="请直接输入员工实名" v-model="formItem.leaderName" />
+            <Input  placeholder="请直接输入员工实名" v-model="formItem.leaderName" size="small" />
           </FormItem>
           <FormItem label="登录名：">
-            <Input  placeholder="请直接输入员工登录名" v-model="formItem.username" />
+            <Input  placeholder="请直接输入员工登录名" v-model="formItem.username" size="small" />
           </FormItem>
           <FormItem label="账号状态：">
-            <Select placeholder="请选择" v-model="formItem.acountState">
+            <Select placeholder="请选择" v-model="formItem.acountState" size="small">
               <Option value="active">生效中</Option>
               <Option value="blocked">已冻结</Option>
             </Select>

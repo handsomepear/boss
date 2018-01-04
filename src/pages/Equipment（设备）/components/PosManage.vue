@@ -9,29 +9,29 @@
           <Row>
             <Col span="5">
             <FormItem label="POS编号：">
-              <Input type="text" v-model="formItem.staffName" />
+              <Input type="text" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="SN串号：">
-              <Input type="text" v-model="formItem.staffPhone" />
+              <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="店铺名称：">
-              <Input type="text" v-model="formItem.roleName" />
+              <Input type="text" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="入库人：">
-              <Input type="text" v-model="formItem.roleName" />
+              <Input type="text" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
-            <Col span="5">
+            <Col span="4">
             <FormItem label="供货商：">
-              <Select placeholder="请选择" v-model="formItem.acountState" >
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="1">世麦科技</Option>
                 <Option value="2">联迪科技</Option>
                 <Option value="2">旺POS</Option>
@@ -39,9 +39,9 @@
               </Select>
             </FormItem>
             </Col>
-            <Col span="5" offset="1">
+            <Col span="4" offset="1">
             <FormItem label="POS状态：">
-              <Select v-model="formItem.acountState" >
+              <Select v-model="formItem.acountState" size="small">
                 <Option value="11">正常</Option>
                 <Option value="12">冻结</Option>
               </Select>
@@ -52,12 +52,12 @@
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
             <Col span="6">
             <FormItem label="入库时间（始）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest"></DatePicker>
+              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="6" offset="1">
             <FormItem label="入库时间（止）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1"></DatePicker>
+              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
             </FormItem>
             </Col>
           </Row>
@@ -65,12 +65,12 @@
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
             <Col span="6">
             <FormItem label="租期结束时间（始）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest"></DatePicker>
+              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="6" offset="1">
             <FormItem label="租期结束时间（止）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1"></DatePicker>
+              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="8" offset="1" style="text-align: right">

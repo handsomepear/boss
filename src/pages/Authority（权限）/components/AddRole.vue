@@ -13,7 +13,7 @@
     <Modal v-model="showAddRole" title="新增角色" width="60%">
       <Form :label-width="100" style="width:300px">
         <FormItem label="※角色名称：">
-          <Input v-model="roleName" />
+          <Input v-model="roleName" size="small"/>
         </FormItem>
       </Form>
       <span class="tips">※权限设定：勾选页面标签，该页面可见；页面可见时，勾选按钮标签，该按钮可见可操作。</span>

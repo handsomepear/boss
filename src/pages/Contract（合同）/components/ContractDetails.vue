@@ -10,33 +10,29 @@
     height: 100px;
   }
 }
-.img-title {
-    text-align: center;
-    line-height: 40px;
-  }
 </style>
 <template>
-  <div class="enter-details">
-    <Modal title="详情" v-model="showEnterDetailsModal" @on-visible-change="modalVisibleChange" @on-ok="ok" @on-cancel="cancel" width="60%">
+  <div class="contract-details">
+    <Modal title="详情" v-model="showContractDetailsModal" @on-visible-change="modalVisibleChange" @on-ok="ok" @on-cancel="cancel" width="60%">
       <Row style="line-height: 40px;">
         <Col span="3">入驻人姓名：</Col>
-        <Col span="16" offset="2">{{enterInfo.name}}</Col>
+        <Col span="16" offset="2">{{contractInfo.name}}</Col>
       </Row>
       <Row style="line-height: 40px;">
         <Col span="3">入驻人手机：</Col>
-        <Col span="16" offset="2">{{enterInfo.phone}}</Col>
+        <Col span="16" offset="2">{{contractInfo.phone}}</Col>
       </Row>
       <Row style="line-height: 40px;">
         <Col span="3">店铺名称：</Col>
-        <Col span="16" offset="2">{{enterInfo.shopAddress}}</Col>
+        <Col span="16" offset="2">{{contractInfo.shopAddress}}</Col>
       </Row>
       <Row style="line-height: 40px;">
         <Col span="3">店铺联系方式：</Col>
-        <Col span="16" offset="2">{{enterInfo.shopTel}}</Col>
+        <Col span="16" offset="2">{{contractInfo.shopTel}}</Col>
       </Row>
       <Row style="line-height: 40px;">
         <Col span="3">经营范围：</Col>
-        <Col span="16" offset="2">{{enterInfo.area.join('、')}}</Col>
+        <Col span="16" offset="2">{{contractInfo.area.join('、')}}</Col>
       </Row>
       <Row style="line-height: 40px;">
         <Col span="24">责任人身份证照片：</Col>
@@ -45,14 +41,14 @@
         <div class="id-card-img">
           <img src="https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar" alt="">
         </div>
-        <p class="img-title">正面照</p>
+        <p style="text-align: center">正面照</p>
         </Col>
         <!-- 背面照 -->
         <Col span="6" offset="2">
         <div class="id-card-img">
           <img src="https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar" alt="">
         </div>
-        <p class="img-title">背面照</p>
+        <p style="text-align: center">背面照</p>
         </Col>
       </Row>
       <Row style="line-height: 40px;">
@@ -103,7 +99,7 @@ export default {
   data() {
     return {
       showEnterDetailsModal: this.detailsShow,
-      enterInfo: {
+      contractInfo: {
         name: "戴佩妮",
         phone: "134****1234",
         shopName: "佩妮小店",

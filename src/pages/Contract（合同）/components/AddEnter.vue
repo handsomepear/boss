@@ -32,7 +32,7 @@
         <FormItem label="※ 入驻人姓名：">
           <Row>
             <Col span="4">
-            <Input v-model="fullname" />
+            <Input v-model="fullname" size="small" />
             </Col>
             <Col span="16" offset="1">
             <span class="msg">只允许汉字或英文字母，必须输入入驻人的真实姓名，最长不可超过10个字符</span>
@@ -42,7 +42,7 @@
         <FormItem label="※ 入驻人手机：">
           <Row>
             <Col span="4">
-            <Input v-model="phone" />
+            <Input v-model="phone" size="small" />
             </Col>
             <Col span="18" offset="1">
             <span class="msg">只允许11位数字，请填写该入驻人可联系手机号，以便接收系统通知短信，以及重置密码。暂不支持非大陆手机号</span>
@@ -52,7 +52,7 @@
         <FormItem label="※ 店铺名称：">
           <Row>
             <Col span="4">
-            <Input v-model="email" type="text" />
+            <Input v-model="email" type="text" size="small" />
             </Col>
             <Col span="16" offset="1">
             <span class="msg">允许汉字、英文字母、数字或特殊符号，最长不可超过30个字符</span>
@@ -62,12 +62,12 @@
         <FormItem label="※ 店铺地址：">
           <Row style="margin-bottom: 24px">
             <Col span="3">
-            <Select>
+            <Select size="small">
               <Option value="beijing">北京</Option>
             </Select>
             </Col>
             <Col span="3" offset="1">
-            <Select placeholder="请选择">
+            <Select size="small" placeholder="请选择">
               <Option value="chaoyang">朝阳区</Option>
               <Option value="haidian">海淀区</Option>
               <Option value="changping">昌平区</Option>
@@ -78,7 +78,7 @@
           </Row>
           <Row>
             <Col span="10">
-            <Input v-model="address" />
+            <Input v-model="address" size="small" />
             </Col>
             <Col span="12" offset="1">
             <span class="msg">允许汉字、英文字母、数字或特殊符号，最长不可超过50个字符</span>
@@ -88,7 +88,7 @@
         <FormItem label="※ 店铺联系方式：">
           <Row>
             <Col span="4">
-            <Input v-model="username" type="text" />
+            <Input v-model="username" type="text" size="small" />
             </Col>
             <Col span="16" offset="1">
             <span class="msg">只允许数字，可填写店铺座机或负责人手机号，用于展示给用户以便联系。暂不支持非大陆手机号</span>

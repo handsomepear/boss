@@ -9,24 +9,24 @@
           <Row>
             <Col span="5">
             <FormItem label="模板序号：">
-              <Input type="text" placeholder="可输入部分序号名字" v-model="formItem.staffName" />
+              <Input type="text" placeholder="可输入部分序号名字" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="模板名称：">
-              <Input type="text" v-model="formItem.staffPhone" />
+              <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="创建人：">
-              <Input type="text" v-model="formItem.roleName" placeholder="可输入部分编号数字" />
+              <Input type="text" v-model="formItem.roleName" placeholder="可输入部分编号数字" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="5">
             <FormItem label="适用对象：">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">个人合作</Option>
                 <Option value="blocked">机构合作</Option>
               </Select>
@@ -34,7 +34,7 @@
             </Col>
             <Col span="5" offset="1">
             <FormItem label="适用业态：">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="blocked">游乐</Option>
                 <Option value="blocked">教育</Option>
               </Select>
@@ -42,7 +42,7 @@
             </Col>
             <Col span="5" offset="1">
             <FormItem label="模板状态：">
-              <Select placeholder="全部状态" v-model="formItem.acountState" >
+              <Select placeholder="全部状态" v-model="formItem.acountState"  size="small">
                 <Option value="active">待启用</Option>
                 <Option value="blocked">启用中</Option>
                 <Option value="blocked">已废弃</Option>
@@ -54,12 +54,12 @@
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
             <Col span="6">
             <FormItem label="启用日期（始）：" :label-width="132">
-              <DatePicker type="date" v-model="formItem.startDate"></DatePicker>
+              <DatePicker type="date" v-model="formItem.startDate" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="6" offset="1">
             <FormItem label="启用日期（止）：" :label-width="132">
-              <DatePicker type="date" v-model="formItem.endDate"></DatePicker>
+              <DatePicker type="date" v-model="formItem.endDate" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="8" offset="1" style="text-align: right">

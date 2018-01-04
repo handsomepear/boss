@@ -15,7 +15,7 @@
       <Card>
         <Form :label-width="80">
           <FormItem label="角色名称：" style="width: 300px">
-            <Input v-model="roleName" placeholder="请输入角色名称" />
+            <Input v-model="roleName" placeholder="请输入角色名称" size="small" />
           </FormItem>
           <FormItem style="text-align: right">
             <div class="button-con">

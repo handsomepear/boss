@@ -9,36 +9,36 @@
           <Row>
             <Col span="5">
             <FormItem label="订单编号：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" />
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="商品名称">
-              <Input type="text" v-model="formItem.staffPhone" />
+              <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="购买用户：">
-              <Input type="text" v-model="formItem.roleName" placeholder="请输入购买用户姓名" />
+              <Input type="text" v-model="formItem.roleName" placeholder="请输入购买用户姓名" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="用户手机号：">
-              <Input type="text" v-model="formItem.roleName"  />
+              <Input type="text" v-model="formItem.roleName"  size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="5" >
             <FormItem label="交易流水号：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.shopName" />
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.shopName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="4">
             <FormItem label="商品类型：" :label-width="90">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="11">CRM商品</Option>
                 <Option value="11">团购代销商品</Option>
               </Select>
@@ -46,7 +46,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="订单状态：" :label-width="90">
-              <Select placeholder="全部状态" v-model="formItem.acountState">
+              <Select placeholder="全部状态" v-model="formItem.acountState" size="small">
                 <Option value="11">待支付</Option>
                 <Option value="11">支付成功</Option>
                 <Option value="11">支付失败</Option>
@@ -61,7 +61,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="支付方式：" :label-width="90">
-              <Select placeholder="请选择" v-model="formItem.acountState">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">微信网页</Option>
                 <Option value="blocked">微信APP</Option>
                 <Option value="blocked">微信POS</Option>
@@ -83,12 +83,12 @@
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
             <Col span="6">
             <FormItem label="订单支付时间（始）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest"></DatePicker>
+              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="6" offset="1">
             <FormItem label="订单支付时间（止）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1"></DatePicker>
+              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="8" offset="1" style="text-align: right">
