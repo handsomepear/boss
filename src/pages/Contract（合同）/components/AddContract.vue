@@ -2,31 +2,6 @@
 .msg {
   font-size: 10px;
 }
-
-.signing-time {
-  color: blue;
-}
-
-.tips {
-  padding-left: 18px;
-  margin-bottom: 24px;
-}
-
-.role {
-  font-size: 10px;
-}
-
-.upload-photo {
-  width: 100%;
-  height: 100px;
-
-  img {
-    margin: 0 auto;
-    display: block;
-    width: 180px;
-    height: 100px;
-  }
-}
 .id-card-img,
 .business-license-img {
   width: 100%;
@@ -34,7 +9,7 @@
   img {
     display: block;
     margin: 0 auto;
-    width: 180px;
+    width: 160px;
     height: 100px;
   }
 }
@@ -49,10 +24,10 @@
 
 
 <template>
-  <div class="add-count">
+  <div class="add-contract">
     <Button type="primary" @click="showAddEnterModal">新增合同</Button>
     <!-- 添加员工账号 -->
-    <Modal v-model="addEnter" title="新增合同" width="60%" @on-ok="ok" @on-cancel="cancel">
+    <Modal v-model="addEnter" title="新增合同" width="60%" :styles="{marginBottom: '100px'}" @on-ok="ok" @on-cancel="cancel">
       <Form :label-width="110" label-position="left">
         <FormItem label="合同编号：">
           <Row>
@@ -103,8 +78,8 @@
         </FormItem>
         <FormItem label="※ 合作模式：">
           <Row>
-            <Col span="3">
-            <Select size="small">
+            <Col span="4">
+            <Select size="small" transfer>
               <Option value="beijing">机构合作</Option>
               <Option value="beijing">个人合作</Option>
             </Select>
@@ -122,12 +97,12 @@
           </Row>
         </FormItem>
         <FormItem label="※ 合同开始日期：">
-          <DatePicker type="date" v-model="contractStartDate" size="small"></DatePicker>
+          <DatePicker type="date" v-model="contractStartDate" size="small" transfer></DatePicker>
         </FormItem>
         <FormItem label="※ 签约时长：">
           <Row>
             <Col span="3">
-            <Select size="small">
+            <Select size="small" transfer>
               <Option value="one">一年</Option>
               <Option value="half">半年</Option>
             </Select>
@@ -160,8 +135,8 @@
         </FormItem>
         <FormItem label="※ 收款银行：">
           <Row>
-            <Col span="3">
-            <Select size="small">
+            <Col span="4">
+            <Select size="small" transfer>
               <Option value="ICBC">中国工商银行</Option>
               <Option value="half">招商银行</Option>
             </Select>
@@ -181,7 +156,7 @@
         <FormItem label="※ 结算周期：">
           <Row>
             <Col span="3">
-            <Select size="small">
+            <Select size="small" transfer>
               <Option value="ICBC">T+1</Option>
               <Option value="ICBC">T+2</Option>
               <Option value="ICBC">T+3</Option>

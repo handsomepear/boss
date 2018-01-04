@@ -43,7 +43,7 @@
           <Row>
             <Col span="4">
             <FormItem label="合作模式：">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small" :transfer="true">
                 <Option value="active">个人合作</Option>
                 <Option value="blocked">机构合作</Option>
               </Select>
@@ -97,7 +97,8 @@
       <Card>
         <!-- 添加新账号 -->
         <AddContract></AddContract>
-        <ContractDetails :detailsShow="detailsShow" v-if="detailsShow" @hideContractDetailsModal="hideContractDetailsModal"></ContractDetails>
+        <!-- 审查/详情弹窗 -->
+        <ContractDetails :detailsShow="detailsShow" :isCheck="isCheck" v-if="detailsShow" @hideContractDetailsModal="hideContractDetailsModal"></ContractDetails>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -115,10 +116,13 @@ import AddContract from "./AddContract";
 import ContractDetails from "./ContractDetails";
 export default {
   components: {
-    AddContract
+    AddContract,
+    ContractDetails
   },
   data() {
     return {
+      isCheck: false,  // 点击审查为true 点击详情为false
+      detailsShow: false,
       optionsTest: {},
       optionsTest1: {},
       formItem: {
@@ -234,7 +238,7 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showEnterDetailsModal();
+                          this.showContractCheckModal();
                         }
                       }
                     },
@@ -280,7 +284,9 @@ export default {
                         size: "small"
                       },
                       on: {
-                        click() {}
+                        click:()=> {
+                          this.showContractDetailsModal();
+                        }
                       }
                     },
                     "详情"
@@ -292,6 +298,17 @@ export default {
         ],
         staffData: [
           // 表格数据
+          {
+            entername: "handsonzps",
+            phone: "135****1234",
+            shopname: "链家",
+            area: "昌平区",
+            applydate: "2017-12-25",
+            checkdate: "2017-12-25",
+            createdate: "2017-12-25",
+            enterstate: "joiila",
+            contractNO: 1020303119031
+          },
           {
             entername: "handsonzps",
             phone: "135****1234",
@@ -383,10 +400,16 @@ export default {
     },
     /* 弹出详情页 */
     showContractDetailsModal() {
-      // this.detailsShow = true;
+      this.isCheck = false;
+      this.detailsShow = true;
     },
     hideContractDetailsModal() {
-      // this.detailsShow = false;
+      this.detailsShow = false;
+    },
+    /* 审查弹窗 */
+    showContractCheckModal(){
+      this.isCheck = true;
+      this.detailsShow = true;
     }
   }
 };

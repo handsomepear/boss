@@ -77,7 +77,8 @@
     <div class="data-con">
       <Card>
         <!-- 添加新账号 -->
-        <!-- <AddEnter></AddEnter> -->
+        <AddTemplate></AddTemplate>
+        <TemplateDetails :detailsShow="detailsShow" v-if="detailsShow" @hideTplDetailsModal="hideTplDetailsModal" :tplInfo="tplInfo"></TemplateDetails>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -91,18 +92,18 @@
 </template>
 
 <script>
-import AddEnter from "./AddEnter";
-import EnterDetails from "./EnterDetails";
+import AddTemplate from "./AddTemplate";
+import TemplateDetails from "./TemplateDetails";
 export default {
   components: {
-    AddEnter,
-    EnterDetails
+    AddTemplate,
+    TemplateDetails
   },
   data() {
     return {
+      tplInfo: {}, // 表格对应的数据 
       detailsShow: false,
       accountState: false,
-      isCheck: false,
       formItem: {
         staffName: "", // 员工姓名
         staffPhone: "", // 员工手机
@@ -195,7 +196,9 @@ export default {
                       "margin-right": "5px"
                     },
                     on: {
-                      click: () => {}
+                      click: () => {
+                        this.showTplDetailsModal(params)
+                      }
                     }
                   },
                   "详情"
@@ -270,12 +273,13 @@ export default {
       // 弹窗 + 表单回填
     },
     /* 弹出详情页 */
-    showEnterDetailsModal() {
-      this.isCheck = false;
+    showTplDetailsModal(params) {
+      Object.assign(this.tplInfo, params)
       this.detailsShow = true;
     },
     /* 隐藏详情弹窗 */
-    hideEnterDetailsModal() {
+    hideTplDetailsModal() {
+      this.tplInfo = {};
       this.detailsShow = false;
     }
   }

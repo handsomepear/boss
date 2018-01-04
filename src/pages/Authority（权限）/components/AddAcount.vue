@@ -51,7 +51,7 @@
         <FormItem label="直属领导：">
           <Row>
             <Col span="4">
-            <Select v-model="leader" size="small">
+            <Select v-model="leader" size="small" transfer>
               <Option value="方文超">方文超</Option>
               <Option value="费国庆">费国庆</Option>
               <Option value="马丽">马丽</Option>
@@ -65,7 +65,7 @@
         <FormItem label="※ 登录名：">
           <Row>
             <Col span="4">
-            <Input v-model="username" type="text size="small""/>
+            <Input v-model="username" type="text" size="small"/>
             </Col>
             <Col span="16" offset="1">
             <span class="msg">只允许英文字符、数字，建议采用员工姓名拼音作为登录名</span>

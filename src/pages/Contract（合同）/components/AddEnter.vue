@@ -24,11 +24,12 @@
 
 
 <template>
-  <div class="add-count">
+  <div class="add-enter">
     <Button type="primary" @click="showAddEnterModal">新增入驻</Button>
     <!-- 添加员工账号 -->
-    <Modal v-model="addEnter" title="新增入驻" width="60%" @on-ok="ok" @on-cancel="cancel">
-      <Form :label-width="110" label-position="left">
+    <Modal v-model="addEnter" title="新增入驻" width="60%" @on-ok="ok" @on-cancel="cancel" 
+    :styles="{marginBottom: '100px'}">
+      <Form :label-width="110" label-position="left" >
         <FormItem label="※ 入驻人姓名：">
           <Row>
             <Col span="4">
@@ -62,12 +63,12 @@
         <FormItem label="※ 店铺地址：">
           <Row style="margin-bottom: 24px">
             <Col span="3">
-            <Select size="small">
+            <Select size="small" transfer>
               <Option value="beijing">北京</Option>
             </Select>
             </Col>
             <Col span="3" offset="1">
-            <Select size="small" placeholder="请选择">
+            <Select size="small" placeholder="请选择" transfer>
               <Option value="chaoyang">朝阳区</Option>
               <Option value="haidian">海淀区</Option>
               <Option value="changping">昌平区</Option>
