@@ -43,7 +43,7 @@
           <Row>
             <Col span="4">
             <FormItem label="合作模式：">
-              <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
+              <Select placeholder="请选择" v-model="formItem.acountState" >
                 <Option value="active">个人合作</Option>
                 <Option value="blocked">机构合作</Option>
               </Select>
@@ -51,7 +51,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="合同状态：">
-              <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
+              <Select placeholder="请选择" v-model="formItem.acountState">
                 <Option value="active">待审查</Option>
                 <Option value="blocked">通过</Option>
                 <Option value="blocked">驳回</Option>
@@ -62,7 +62,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="合同变更来源：" :label-width="100">
-              <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
+              <Select placeholder="请选择" v-model="formItem.acountState" >
                 <Option value="active">BOSS</Option>
                 <Option value="blocked">商户端</Option>
               </Select>
@@ -98,7 +98,7 @@
         <!-- 添加新账号 -->
         <!-- <Button type="primary">新增模板</Button> -->
         <!-- <AddEnter></AddEnter> -->
-        <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails>
+        <!-- <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails> -->
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -148,46 +148,67 @@ export default {
         staffAcounts: [
           // columns设置
           {
-            title: "入驻人",
-            key: "entername"
+            title: "合同编号",
+            key: "contractNo"
           },
           {
-            title: "入驻人手机",
-            key: "phone"
+            title: "甲方民称",
+            key: "ownerName"
+          },
+          {
+            title: "代表人",
+            key: "representative"
+          },
+          {
+            title: "代表人手机号",
+            key: "representativePhone"
+          },
+          {
+            title: "合作模式",
+            key: "collaborateModel"
           },
           {
             title: "店铺名称",
-            key: "shopname"
+            key: "shopName"
           },
           {
-            title: "行政区域",
-            key: "area"
+            title: "合同开始日期",
+            key: "startDate"
           },
           {
-            title: "申请日期",
-            key: "applydate"
+            title: "合同结束日期",
+            key: "endDate"
           },
-          {
-            title: "审核通过日期",
-            width: 110,
-            key: "checkdate"
-          },
-          {
-            title: "入驻状态",
-            key: "enterstate"
-          },
-          {
-            title: "合同编号",
+           {
+            title: "合同创建时间",
             key: "contractNO"
+          },
+           {
+            title: "销售人员",
+            key: "saler"
+          },
+           {
+            title: "合同状态",
+            key: "contractState"
+          },
+           {
+            title: "合同变更来源",
+            key: "constractSrc"
           },
           {
             title: "操作",
             key: "action",
-            width: 300,
+            width: 200,
             align: "center",
             // 创建row上面的按钮
             render: (h, params) => {
-              return h("div", [
+              return h("div", 
+              {
+                style: {
+                  "line-height": '40px'
+                }
+              },
+              [
                 h(
                   "Button",
                   {
@@ -223,7 +244,7 @@ export default {
                       }
                     }
                   },
-                  "详情"
+                  "审查"
                 ),
                 h(
                   "Button",
@@ -239,11 +260,26 @@ export default {
                       click() {}
                     }
                   },
-                  "审核"
+                  "中止合同"
                 ),
                 h(
                   "Button",
-
+                  {
+                    props: {
+                      type: "info",
+                      size: "small"
+                    },
+                    style: {
+                      "margin-right": "5px"
+                    },
+                    on: {
+                      click() {}
+                    }
+                  },
+                  "销售人员变更"
+                ),
+                h(
+                  "Button",
                   {
                     props: {
                       type: "info",
@@ -253,7 +289,7 @@ export default {
                       click() {}
                     }
                   },
-                  "重置密码"
+                  "详情"
                 )
               ]);
             }
@@ -352,10 +388,10 @@ export default {
     },
     /* 弹出详情页 */
     showEnterDetailsModal() {
-      this.detailsShow = true;
+      // this.detailsShow = true;
     },
     hideEnterDetailsModal() {
-      this.detailsShow = false;
+      // this.detailsShow = false;
     }
   }
 };

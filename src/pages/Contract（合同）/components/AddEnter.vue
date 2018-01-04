@@ -207,7 +207,7 @@ export default {
       setTimeout( () => {
         this.show_loading = false;
         this.addEnter = false;
-        this.$Message.success("提交成功")
+        this.$Message.success("提交成功");
       },1000)
     },
     // 取消提交

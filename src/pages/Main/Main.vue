@@ -1,3 +1,7 @@
+<style lang="less">
+@import "./main.less";
+</style>
+
 <template>
   <div class="main" style="height: 100%">
     <div class="sidebar-menu-con" style="">
@@ -30,8 +34,4 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-@import "./main.less";
-</style>
 

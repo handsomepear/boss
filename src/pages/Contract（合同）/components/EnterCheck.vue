@@ -33,7 +33,7 @@
           <Row>
             <Col span="4">
             <FormItem label="行政区域：">
-              <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
+              <Select placeholder="请选择" v-model="formItem.acountState" >
                 <Option value="active">海淀区</Option>
                 <Option value="blocked">朝阳区</Option>
                 <Option value="blocked">西城区</Option>
@@ -44,7 +44,7 @@
             </Col>
             <Col span="4" offset="1">
             <FormItem label="账号状态：">
-              <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
+              <Select placeholder="请选择" v-model="formItem.acountState">
                 <Option value="active">全部状态</Option>
                 <Option value="blocked">通过</Option>
                 <Option value="blocked">驳回</Option>

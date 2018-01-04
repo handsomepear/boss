@@ -24,7 +24,7 @@
             <Input  placeholder="请直接输入员工登录名" v-model="formItem.username" />
           </FormItem>
           <FormItem label="账号状态：">
-            <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
+            <Select placeholder="请选择" v-model="formItem.acountState">
               <Option value="active">生效中</Option>
               <Option value="blocked">已冻结</Option>
             </Select>

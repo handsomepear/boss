@@ -26,7 +26,7 @@
           <Row>
             <Col span="5">
             <FormItem label="适用对象：">
-              <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
+              <Select placeholder="请选择" v-model="formItem.acountState">
                 <Option value="active">个人合作</Option>
                 <Option value="blocked">机构合作</Option>
               </Select>
@@ -34,7 +34,7 @@
             </Col>
             <Col span="5" offset="1">
             <FormItem label="适用业态：">
-              <Select placeholder="请选择" v-model="formItem.acountState" style="width: 100px">
+              <Select placeholder="请选择" v-model="formItem.acountState">
                 <Option value="blocked">游乐</Option>
                 <Option value="blocked">教育</Option>
               </Select>
@@ -42,7 +42,7 @@
             </Col>
             <Col span="5" offset="1">
             <FormItem label="模板状态：">
-              <Select placeholder="全部状态" v-model="formItem.acountState" style="width: 100px">
+              <Select placeholder="全部状态" v-model="formItem.acountState" >
                 <Option value="active">待启用</Option>
                 <Option value="blocked">启用中</Option>
                 <Option value="blocked">已废弃</Option>
@@ -53,12 +53,12 @@
           <Row>
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
             <Col span="6">
-            <FormItem label="合同结束时间（始）：" :label-width="132">
+            <FormItem label="启用日期（始）：" :label-width="132">
               <DatePicker type="date" v-model="formItem.startDate"></DatePicker>
             </FormItem>
             </Col>
             <Col span="6" offset="1">
-            <FormItem label="合同结束时间（止）：" :label-width="132">
+            <FormItem label="启用日期（止）：" :label-width="132">
               <DatePicker type="date" v-model="formItem.endDate"></DatePicker>
             </FormItem>
             </Col>
@@ -118,36 +118,44 @@ export default {
         staffAcounts: [
           // columns设置
           {
-            title: "入驻人",
+            title: "序号",
             key: "entername"
           },
           {
-            title: "入驻人手机",
+            title: "模板名称",
             key: "phone"
           },
           {
-            title: "店铺名称",
+            title: "适用业态",
             key: "shopname"
           },
           {
-            title: "行政区域",
+            title: "适用对象",
             key: "area"
           },
           {
-            title: "申请日期",
+            title: "创建日期",
             key: "applydate"
           },
           {
-            title: "审核通过日期",
+            title: "模板签约数",
             width: 110,
             key: "checkdate"
           },
           {
-            title: "入驻状态",
+            title: "替换模板序号",
             key: "enterstate"
           },
           {
-            title: "合同编号",
+            title: "启用日期",
+            key: "contractNO"
+          },
+          {
+            title: "创建人",
+            key: "contractNO"
+          },
+          {
+            title: "模板状态",
             key: "contractNO"
           },
           {
@@ -191,36 +199,6 @@ export default {
                     }
                   },
                   "详情"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
-                    },
-                    style: {
-                      "margin-right": "5px"
-                    },
-                    on: {
-                      click: () => {}
-                    }
-                  },
-                  "审核"
-                ),
-                h(
-                  "Button",
-
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
-                    },
-                    on: {
-                      click() {}
-                    }
-                  },
-                  "重置密码"
                 )
               ]);
             }
