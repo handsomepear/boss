@@ -17,7 +17,7 @@
 </style>
 <template>
   <div class="enter-details">
-    <Modal title="详情" v-model="showEnterDetailsModal" @on-visible-change="modalVisibleChange" @on-ok="ok" @on-cancel="cancel" width="60%">
+    <Modal title="详情" v-model="showEnterDetailsModal" @on-visible-change="modalVisibleChange" @on-ok="ok" @on-cancel="cancel" width="60%" :styles="{marginBottom: isCheck ? '100px': '0'}">
       <Row style="line-height: 40px;">
         <Col span="3">入驻人姓名：</Col>
         <Col span="16" offset="2">{{enterInfo.name}}</Col>

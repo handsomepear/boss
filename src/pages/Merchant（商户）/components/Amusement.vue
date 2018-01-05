@@ -2,43 +2,43 @@
 
 </style>
 <template>
-  <div class="contract-list">
-    <div class="contract-top">
+  <div class="amusement-merchant">
+    <div class="amusement-top">
       <Card>
         <Form :label-width="90" ref="contractForm" v-model="formItem" label-position="left">
           <Row>
             <Col span="5">
             <FormItem label="合同编号：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small"/>
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="入驻人姓名：">
-              <Input type="text" v-model="formItem.staffPhone" size="small"/>
+              <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="销售人员：">
-              <Input type="text" v-model="formItem.roleName" placeholder="请输入销售人员姓名" size="small"/>
+              <Input type="text" v-model="formItem.roleName" placeholder="请输入销售人员姓名" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="5">
             <FormItem label="店铺名称：">
-              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small"/>
+              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
             <FormItem label="店铺联系方式：" :label-width="100">
-              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small"/>
+              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="5">
             <FormItem label="商户业态：">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small" >
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="1">团购代销</Option>
                 <Option value="2">CRM</Option>
               </Select>
@@ -46,7 +46,7 @@
             </Col>
             <Col span="5" offset="1">
             <FormItem label="店铺状态：">
-              <Select placeholder="全部状态" v-model="formItem.acountState" size="small" >
+              <Select placeholder="全部状态" v-model="formItem.acountState" size="small">
                 <Option value="11">待审查</Option>
                 <Option value="12">服务中</Option>
                 <Option value="13">驳回</Option>
@@ -57,7 +57,7 @@
             </Col>
             <Col span="5" offset="1">
             <FormItem label="店铺变更来源：" :label-width="100">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small" >
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">BOSS</Option>
                 <Option value="blocked">商户端</Option>
               </Select>
@@ -83,8 +83,10 @@
       <Card>
         <!-- 添加新账号 -->
         <!-- <Button type="primary">新增模板</Button> -->
-        <!-- <AddEnter></AddEnter> -->
-        <!-- <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails> -->
+        <AddStore></AddStore>
+        <StoreDetails :detailsShow="detailsShow" v-if="detailsShow" @hideStoreDetailsModal="hideStoreDetailsModal" :isCheck="isCheck"></StoreDetails>
+        <QrcodeModal :qrcodeModalShow="qrcodeModalShow" v-if="qrcodeModalShow" @hideQrcodeModal="hideQrcodeModal"></QrcodeModal>
+        <SaleManage :saleManageShow="saleManageShow" v-if="saleManageShow" @hideSaleManageModal="hideSaleManageModal"></SaleManage>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -98,20 +100,28 @@
 </template>
 
 <script>
+import AddStore from "./AddStore";
+import StoreDetails from "./StoreDetails";
+import QrcodeModal from "./QrcodeModal";
+import SaleManage from "./SaleManage";
 export default {
   components: {
-    // AddEnter
+    AddStore,
+    StoreDetails,
+    QrcodeModal,
+    SaleManage
   },
   data() {
     return {
+      saleManageShow: false,
+      qrcodeModalShow: false,
+      isCheck: false,
+      detailsShow: false,
       optionsTest: {
-        disabledDate(date) {
-          
-        }
+        disabledDate(date) {}
       },
       optionsTest1: {
-        disabledDate(date) {
-        }
+        disabledDate(date) {}
       },
       formItem: {
         contractNo: "", // 合同编号
@@ -156,11 +166,11 @@ export default {
             title: "店铺状态",
             key: "shopName"
           },
-           {
+          {
             title: "销售人员",
             key: "contractNO"
           },
-           {
+          {
             title: "店铺变更来源",
             key: "saler"
           },
@@ -171,112 +181,121 @@ export default {
             align: "center",
             // 创建row上面的按钮
             render: (h, params) => {
-              return h("div", 
-              {
-                style: {
-                  "line-height": '40px'
-                }
-              },
-              [
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "primary",
-                      size: "small"
-                    },
-                    style: {
-                      "margin-right": "5px"
-                    },
-                    on: {
-                      click: () => {
-                        console.log(this);
-                        this.revise(params);
+              return h(
+                "div",
+                {
+                  style: {
+                    "line-height": "40px"
+                  }
+                },
+                [
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "primary",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click: () => {
+                          console.log(this);
+                          this.revise(params);
+                        }
                       }
-                    }
-                  },
-                  "修改"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
                     },
-                    style: {
-                      "margin-right": "5px"
-                    },
-                    on: {
-                      click: () => {
-                        this.showEnterDetailsModal();
+                    "修改"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click: () => {
+                          this.showContractCheckModal();
+                        }
                       }
-                    }
-                  },
-                  "审查"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
                     },
-                    style: {
-                      "margin-right": "5px"
+                    "审查"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click() {}
+                      }
                     },
-                    on: {
-                      click() {}
-                    }
-                  },
-                  "暂停服务"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
+                    "暂停服务"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click: () => {
+                          this.showStoreDetailsModal();
+                        }
+                      }
                     },
-                    style: {
-                      "margin-right": "5px"
+                    "详情"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click: () => {
+                          // 将params对象保存到data对象中 然后传递给下面的组件
+                          this.showQrCodeModal();
+                        }
+                      }
                     },
-                    on: {
-                      click() {}
-                    }
-                  },
-                  "详情"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
+                    "直销二维码"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      on: {
+                        click: () => {
+                          this.showSaleManageModal();
+                        }
+                      }
                     },
-                    style: {
-                      "margin-right": "5px"
-                    },
-                    on: {
-                      click() {}
-                    }
-                  },
-                  "直销二维码"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "info",
-                      size: "small"
-                    },
-                    on: {
-                      click() {}
-                    }
-                  },
-                  "销售管理"
-                )
-              ]);
+                    "销售管理"
+                  )
+                ]
+              );
             }
           }
         ],
@@ -372,11 +391,33 @@ export default {
       params.row.state = !params.row.state;
     },
     /* 弹出详情页 */
-    showEnterDetailsModal() {
-      // this.detailsShow = true;
+    showStoreDetailsModal() {
+      this.detailsShow = true;
     },
-    hideEnterDetailsModal() {
-      // this.detailsShow = false;
+    hideStoreDetailsModal() {
+      this.isCheck = false;
+      this.detailsShow = false;
+    },
+    /* 审查弹窗 */
+    showContractCheckModal() {
+      this.isCheck = true;
+      this.detailsShow = true;
+    },
+    /* 显示直销二维码 */
+    showQrCodeModal() {
+      this.qrcodeModalShow = true;
+    },
+    /* 隐藏二维码弹窗 */
+    hideQrcodeModal() {
+      this.qrcodeModalShow = false;
+    },
+    /* 显示销售管理弹窗 */
+    showSaleManageModal() {
+      this.saleManageShow = true;
+    },
+    /* 隐藏销售管理弹窗 */
+    hideSaleManageModal() {
+      this.saleManageShow = false;
     }
   }
 };
