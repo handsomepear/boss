@@ -5,7 +5,7 @@
 
 <template>
   <div class="sale-manage">
-    <Modal title="销售管理" v-model="modalisShow" width="60%" @on-visible-change="modalVisibleChange">
+    <Modal title="销售管理" v-model="modalisShow" width="60%" @on-visible-change="modalVisibleChange" >
       <Tabs type="card" :animated="false">
         <TabPane label="排序及直销">
           <SortDirectSaling></SortDirectSaling>

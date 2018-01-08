@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     /* 保存二维码到本地 */
-    saveToLodal() {
+    saveQrCodeToLodal() {
       this.$emit("hideSettingModal");
     },
     cancel() {

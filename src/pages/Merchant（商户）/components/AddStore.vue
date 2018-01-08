@@ -27,6 +27,9 @@
     height: 100px;
   }
 }
+.scope-item {
+  font-size: 11px;
+}
 </style>
 
 
@@ -107,13 +110,13 @@
           <span class="msg">可勾选该店铺涉及的多项经营内容</span>
           <CheckboxGroup v-model="role" size="small">
             <Checkbox label="SE">
-              <span class="role">室内乐园</span>
+              <span class="scope-item">室内乐园</span>
             </Checkbox>
             <Checkbox label="SM">
-              <span class="role">手工DIY</span>
+              <span class="scope-item">手工DIY</span>
             </Checkbox>
             <Checkbox label="FEPM">
-              <span class="role">其它</span>
+              <span class="scope-item">其它</span>
             </Checkbox>
           </CheckboxGroup>
         </FormItem>

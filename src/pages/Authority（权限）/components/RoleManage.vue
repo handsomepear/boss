@@ -34,8 +34,6 @@
           <!-- 分页插件和表格内容显示 -->
           <Page :total="totalPage" show-sizer :page-size="pageSize" :page-size-opts="pageSizeOpts"></Page>
           <Table border :columns="columns1" :data="data1" style="margin: 20px 0"></Table>
-          <Page :total="totalPage" show-sizer :page-size="pageSize" :page-size-opts="pageSizeOpts"></Page>
-          <!-- 如何把两个page组件关联起来？ -->
         </div>
       </Card>
     </div>
