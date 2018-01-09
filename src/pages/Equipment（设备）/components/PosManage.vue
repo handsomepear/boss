@@ -88,16 +88,14 @@
     </div>
     <div class="data-con">
       <Card>
-        <!-- 添加新账号 -->
-        <!-- <Button type="primary">新增模板</Button> -->
-        <!-- <AddEnter></AddEnter> -->
-        <!-- <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails> -->
+        <!-- 入库管理 -->
+        <StoragePos></StoragePos>
+        <!-- POS详情 -->
+        <PosDetail :detailShow="detailShow" v-if="detailShow" @hidePosDetailModal="hidePosDetailModal"></PosDetail>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
-          
-          <!-- 如何把两个page组件关联起来？ -->
         </div>
       </Card>
     </div>
@@ -105,12 +103,16 @@
 </template>
 
 <script>
+import StoragePos from './StoragePos';
+import PosDetail from './PosDetail';
 export default {
   components: {
-    // AddEnter
+    StoragePos,
+    PosDetail
   },
   data() {
     return {
+      detailShow: false,
       optionsTest: {
         disabledDate(date) {}
       },
@@ -135,7 +137,6 @@ export default {
         pageSize: 15,
         pageSizeOpts: [15, 50, 100],
         staffAcounts: [
-          // columns设置
           {
             title: "POS编号",
             key: "contractNo"
@@ -235,7 +236,9 @@ export default {
                         "margin-right": "5px"
                       },
                       on: {
-                        click() {}
+                        click:() => {
+                          this.showPosDetailModal()
+                        }
                       }
                     },
                     "详情"
@@ -337,11 +340,11 @@ export default {
       params.row.state = !params.row.state;
     },
     /* 弹出详情页 */
-    showEnterDetailsModal() {
-      // this.detailsShow = true;
+    showPosDetailModal() {
+      this.detailShow = true;
     },
-    hideEnterDetailsModal() {
-      // this.detailsShow = false;
+    hidePosDetailModal() {
+      this.detailShow = false;
     }
   }
 };

@@ -30,6 +30,8 @@
       <Card>
         <!-- 添加角色 -->
         <AddRole></AddRole>
+        <!-- 角色详情 -->
+        <RoleDetail :detailShow="detailShow" v-if="detailShow" @hideRoleDetailModal="hideRoleDetailModal"></RoleDetail>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="totalPage" show-sizer :page-size="pageSize" :page-size-opts="pageSizeOpts"></Page>
@@ -43,13 +45,15 @@
 
 <script>
 import AddRole from "./AddRole"; // 添加角色
+import RoleDetail from "./RoleDetail";
 export default {
   components: {
-    AddRole
+    AddRole,
+    RoleDetail
   },
   data() {
     return {
-      modal1: false,
+      detailShow: false,
       roleName: "handsonZPS", // 角色名称
       totalPage: 300,
       pageSize: 15,
@@ -91,7 +95,6 @@ export default {
                   on: {
                     click: () => {
                       // 修改信息
-                      this.show(params.index);
                     }
                   }
                 },
@@ -123,12 +126,10 @@ export default {
                     type: "info",
                     size: "small"
                   },
-
                   on: {
                     click: () => {
                       // 查看详情
-                      console.log(this)
-                      this.showInfo(params.index);
+                      this.showRoleDetailModal();
                     }
                   }
                 },
@@ -164,22 +165,21 @@ export default {
   },
 
   methods: {
-    show(index) {
-      this.$Modal.info({
-        title: "User Info",
-        content: `角色名称：${this.data1[index].roleName}<br>创建人：${this.data1[index]
-          .creater}<br>Address：${this.data1[index].createTime}`
-      });
-    },
-    showInfo(index) {
-      this.$Modal.info({
-        title: "Info",
-        content: `角色名称：${this.data1[index].roleName}<br>创建人：${this.data1[index]
-          .creater}<br>Address：${this.data1[index].createTime}`
-      });
-    },
+    // show(index) {
+    //   this.$Modal.info({
+    //     title: "User Info",
+    //     content: `角色名称：${this.data1[index].roleName}<br>创建人：${this.data1[index]
+    //       .creater}<br>Address：${this.data1[index].createTime}`
+    //   });
+    // },
     remove(index) {
       this.data1.splice(index, 1);
+    },
+    showRoleDetailModal() {
+      this.detailShow = true;
+    },
+    hideRoleDetailModal() {
+      this.detailShow = false;
     }
   }
 };

@@ -190,14 +190,15 @@ export default {
   },
   methods: {
     modalVisibleChange() {
-      this.$emit("hideStoreDetailsModal");
+      this.$emit("hideContractDetailsModal");
     },
     cancel() {
       // 取消
-      console.log("取消");
+      this.$emit("hideContractDetailsModal");
     },
     ok() {
       // 确定
+      this.$emit("hideContractDetailsModal");
       console.log("ok");
     }
   }

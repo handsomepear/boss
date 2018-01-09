@@ -99,6 +99,8 @@
         <AddContract></AddContract>
         <!-- 审查/详情弹窗 -->
         <ContractDetails :detailsShow="detailsShow" :isCheck="isCheck" v-if="detailsShow" @hideContractDetailsModal="hideContractDetailsModal"></ContractDetails>
+        <!-- 销售人员变更 -->
+        <ChangeSaler :modalsShow="modalsShow" v-if="modalsShow" @hideChangeSalerModal="hideChangeSalerModal"></ChangeSaler>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -113,15 +115,18 @@
 <script>
 import AddContract from "./AddContract";
 import ContractDetails from "./ContractDetails";
+import ChangeSaler from "./ChangeSaler";
 export default {
   components: {
     AddContract,
-    ContractDetails
+    ContractDetails,
+    ChangeSaler
   },
   data() {
     return {
-      isCheck: false,  // 点击审查为true 点击详情为false
+      isCheck: false, // 点击审查为true 点击详情为false
       detailsShow: false,
+      modalsShow: false,
       optionsTest: {},
       optionsTest1: {},
       formItem: {
@@ -270,7 +275,10 @@ export default {
                         "margin-right": "5px"
                       },
                       on: {
-                        click() {}
+                        click: () => {
+                          // 变更销售
+                          this.showChangeSalerModal();
+                        }
                       }
                     },
                     "销售人员变更"
@@ -283,7 +291,7 @@ export default {
                         size: "small"
                       },
                       on: {
-                        click:()=> {
+                        click: () => {
                           this.showContractDetailsModal();
                         }
                       }
@@ -399,16 +407,22 @@ export default {
     },
     /* 弹出详情页 */
     showContractDetailsModal() {
-      this.isCheck = false;
       this.detailsShow = true;
     },
     hideContractDetailsModal() {
+      this.isCheck = false;
       this.detailsShow = false;
     },
     /* 审查弹窗 */
-    showContractCheckModal(){
+    showContractCheckModal() {
       this.isCheck = true;
       this.detailsShow = true;
+    },
+    showChangeSalerModal() {
+      this.modalsShow = true;
+    },
+    hideChangeSalerModal() {
+      this.modalsShow = false;
     }
   }
 };

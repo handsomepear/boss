@@ -34,7 +34,7 @@
 .fine-packet-info {
   border: 1px solid #ccc;
   padding: 10px;
-  height: 500px;
+  height: 750px;
 }
 .row {
   border: 1px solid #ccc;
@@ -49,7 +49,7 @@
   <div class="add-store">
     <Button type="primary" @click="showAddEnterModal">新增店铺</Button>
     <!-- 添加员工账号 -->
-    <Modal v-model="addEnter" title="新增店铺" width="60%" :styles="{marginBottom: '100px'}" @on-ok="ok" @on-cancel="cancel">
+    <Modal v-model="addEnter" title="新增店铺" width="60%" :styles="{marginBottom: '100px', minWidth: '800px'}" @on-ok="ok" @on-cancel="cancel">
       <Form :label-width="110" label-position="left">
         <FormItem label="复制商品SKUID：">
           <Row>
@@ -164,7 +164,7 @@
               </div>
               <Row>
                 <Col style="margin: 20px 0">※ 商品有效期：</Col>
-                <Col>
+                <Col style="margin-left:50px">
                 <RadioGroup vertical v-model="goodsExpire" style="width: 100%">
                   <Row>
                     <Col span="3">
@@ -234,11 +234,11 @@
                 </Col>
               </Row>
 
-              <Row>
+              <Row style="margin-top: 20px">
                 <!-- 商品售价 -->
                 <Col span="10">
                 <Row>
-                  <Col span="5" style="line-height: 24px">※ 商品售价：</Col>
+                  <Col span="6" style="line-height: 24px">※ 商品售价：</Col>
                   <Col span="14">
                   <Input placeholder="不超过100万的非负数，精度0.01" size="small" />
                   </Col>
@@ -258,49 +258,86 @@
                 </Row>
                 </Col>
               </Row>
+              <!-- 商户结算 -->
               <Row>
                 <Col style="margin: 20px 0">※ 商户结算：</Col>
-                <Col>
-                <RadioGroup vertical v-model="goodsExpire" style="width: 100%">
+                <Col style="margin-left: 50px">
+                <RadioGroup vertical v-model="settlement" style="width: 100%">
                   <Row>
                     <Col span="3">
-                    <Radio label="absolute">
+                    <Radio label="fixed">
                       <span>按固定金额结算</span>
                     </Radio>
                     </Col>
-                    <Col span="8" offset="1" style="line-height: 30px">
+                    <Col span="8" offset="1" style="line-height: 30px" v-if="settlement === 'fixed'">
                     <Input size="small" placeholder="不超过100万的非负数，精度0.01" />
                     </Col>
                   </Row>
                   <Row style="margin-top:15px">
                     <Col span="3">
-                    <Radio label="relative">
-                      <span>相对值</span>
+                    <Radio label="percent">
+                      <span>按比例结算</span>
                     </Radio>
                     </Col>
-                    <Col span="8" offset="1" style="line-height: 30px">
+                    <Col span="8" offset="1" style="line-height: 30px" v-if="settlement === 'percent'">
                     <Input size="small" placeholder="不超过100万的非负数，精度0.01" />
                     </Col>
                   </Row>
                 </RadioGroup>
                 </Col>
               </Row>
+              <!-- 商品图片 -->
+              <Row style="margin-top:20px;">
+                <Col style="margin-bottom: 20px">※ 商品图片：</Col>
+                <Col span="6" offset="1">
+                <div class="upload-photo">
+                  <img src="https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar">
+                </div>
+                <Upload action="" style="text-align: center">
+                  <Button size="small" style="font-size:10px;margin-top:10px;">上传图一照片</Button>
+                </Upload>
+                </Col>
+                <Col span="6" offset="1">
+                <div class="upload-photo">
+                  <img src="https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar">
+                </div>
+                <Upload action="" style="text-align: center">
+                  <Button size="small" style="font-size:10px;margin-top:10px;">上传图二照片</Button>
+                </Upload>
+                </Col>
+                <Col span="6" offset="1">
+                <div class="upload-photo">
+                  <img src="https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar">
+                </div>
+                <Upload action="" style="text-align: center">
+                  <Button size="small" style="font-size:10px;margin-top:10px;">上传图三照片</Button>
+                </Upload>
+                </Col>
+              </Row>
             </div>
           </TabPane>
           <TabPane label="精包信息">
             <div class="fine-packet-info">
-              <button>halo</button>
+              <!-- 特色 -->
+              <Row>
+                <Col>※ 特色：允许汉字+英文字母+数字+符号，单行长度不可超过100个字，总字数不可超过500字</Col>
+                <!-- 富文本 -->
+              </Row>
+              <Row>
+                <Col>※ 亮点、信息、须知：允许汉字+英文字母+数字+符号+图片，总字数不可超过2000字</Col>
+                <!-- 富文本 -->
+              </Row>
             </div>
           </TabPane>
         </Tabs>
 
         <FormItem label="※ 商品库存：">
           <Row>
-            <Col span="4">
+            <Col span="5">
             <Input v-model="email" type="text" size="small" placeholder="不超过1亿的非负整数" />
             </Col>
             <Col span="3" offset="1">
-            <Checkbox v-model="single">锁定库存</Checkbox>
+            <Checkbox>锁定库存</Checkbox>
             </Col>
             <Col span="14" offset="1">
             <span class="msg">锁定库存后，该商品在前台销售无论多少，库存都不会变化，一直处于有货可销售状态</span>
@@ -317,7 +354,7 @@
             <DatePicker type="date" size="small" transfer></DatePicker>
             </Col>
             <Col span="14" offset="1">
-            <span class="msg">锁定库存后，该商品在前台销售无论多少，库存都不会变化，一直处于有货可销售状态</span>
+            <span class="msg">在该时间段内，该商品将在用户端前台展示可见。起始时间如为空，审核一旦通过将直接上线</span>
             </Col>
           </Row>
         </FormItem>
@@ -338,7 +375,8 @@
 export default {
   data() {
     return {
-      goodsExpire: "",
+      goodsExpire: "absolute",
+      settlement: "fixed", // 商户结算
       canUseEcard: false,
       cardType: "single",
       contractStartDate: "", // 合同开始时间

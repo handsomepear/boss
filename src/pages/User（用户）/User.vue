@@ -128,14 +128,12 @@
       <Card>
         <!-- 添加新账号 -->
         <!-- <Button type="primary">新增模板</Button> -->
-        <!-- <AddEnter></AddEnter> -->
-        <!-- <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails> -->
+        <AddUser></AddUser>
+        <UserDetail :detailShow="detailShow"  v-if="detailShow" @hideUserDetailModal="hideUserDetailModal"></UserDetail>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
-      
-          <!-- 如何把两个page组件关联起来？ -->
         </div>
       </Card>
     </div>
@@ -143,12 +141,16 @@
 </template>
 
 <script>
+import AddUser from './AddUser'
+import UserDetail from './UserDetail'
 export default {
   components: {
-    // AddEnter
+    AddUser,
+    UserDetail
   },
   data() {
     return {
+      detailShow: false,
       optionsTest: {
         disabledDate(date) {}
       },
@@ -282,7 +284,9 @@ export default {
                         "margin-right": "5px"
                       },
                       on: {
-                        click() {}
+                        click:() => {
+                          this.showUserDetailModal()
+                        }
                       }
                     },
                     "详情"
@@ -384,11 +388,11 @@ export default {
       params.row.state = !params.row.state;
     },
     /* 弹出详情页 */
-    showEnterDetailsModal() {
-      // this.detailsShow = true;
+    showUserDetailModal() {
+      this.detailShow = true;
     },
-    hideEnterDetailsModal() {
-      // this.detailsShow = false;
+    hideUserDetailModal() {
+      this.detailShow = false;
     }
   }
 };

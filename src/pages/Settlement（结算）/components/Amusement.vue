@@ -29,7 +29,7 @@
             </Col>
           </Row>
           <Row>
-            <Col span="4" >
+            <Col span="4">
             <FormItem label="结算单状态：">
               <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="1">待商户确认</Option>
@@ -77,15 +77,13 @@
     </div>
     <div class="data-con">
       <Card>
-        <!-- 添加新账号 -->
-        <!-- <Button type="primary">新增模板</Button> -->
-        <!-- <AddEnter></AddEnter> -->
-        <!-- <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails> -->
+        <!-- 配置审批流 -->
+        <ConfigApproval></ConfigApproval>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
-          
+
           <!-- 如何把两个page组件关联起来？ -->
         </div>
       </Card>
@@ -94,9 +92,10 @@
 </template>
 
 <script>
+import ConfigApproval from './ConfigApproval'
 export default {
   components: {
-    // AddEnter
+    ConfigApproval
   },
   data() {
     return {

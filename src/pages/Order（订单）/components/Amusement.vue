@@ -107,10 +107,8 @@
     </div>
     <div class="data-con">
       <Card>
-        <!-- 添加新账号 -->
-        <!-- <Button type="primary">新增模板</Button> -->
-        <!-- <AddEnter></AddEnter> -->
-        <!-- <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails> -->
+        <OrderAction :modalShow="modalShow" :actionType="actionType" v-if="modalShow" @hideOrderActionModal="hideOrderActionModal"></OrderAction>
+        <OrderDetail :detailShow="detailShow" v-if="detailShow" @hideOrderDetailModal="hideOrderDetailModal"></OrderDetail>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -123,12 +121,18 @@
 </template>
 
 <script>
+import OrderAction from "./OrderAction.vue";
+import OrderDetail from "./OrderDetail.vue";
 export default {
   components: {
-    // AddEnter
+    OrderAction,
+    OrderDetail
   },
   data() {
     return {
+      detailShow: false,
+      modalShow: false,
+      actionType: "", // 表格中按钮操作的类型 ’关联用户‘ 、‘消费确认’、‘更换商品’
       optionsTest: {
         disabledDate(date) {}
       },
@@ -237,8 +241,7 @@ export default {
                       },
                       on: {
                         click: () => {
-                          console.log(this);
-                          this.revise(params);
+                          this.showOrderActionModal("relevance");
                         }
                       }
                     },
@@ -256,7 +259,7 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showEnterDetailsModal();
+                          this.showOrderActionModal("consume");
                         }
                       }
                     },
@@ -273,7 +276,9 @@ export default {
                         "margin-right": "5px"
                       },
                       on: {
-                        click() {}
+                        click: () => {
+                          this.showOrderActionModal("change");
+                        }
                       }
                     },
                     "更换商品"
@@ -289,7 +294,9 @@ export default {
                         "margin-right": "5px"
                       },
                       on: {
-                        click() {}
+                        click: () => {
+                          this.showOrderDetailModal();
+                        }
                       }
                     },
                     "详情"
@@ -359,7 +366,6 @@ export default {
       });
 
       /* 重置密码 发送请求 请求出错之后 弹窗显示 */
-
       // this.$Modal.error({
       //   content: '重置密码出错，请稍候再试'
       // })
@@ -390,12 +396,20 @@ export default {
     block(params) {
       params.row.state = !params.row.state;
     },
-    /* 弹出详情页 */
-    showEnterDetailsModal() {
-      // this.detailsShow = true;
+    /* 弹出订单操作页 */
+    showOrderActionModal(actionType) {
+      this.actionType = actionType;
+      this.modalShow = true;
     },
-    hideEnterDetailsModal() {
-      // this.detailsShow = false;
+    hideOrderActionModal() {
+      this.modalShow = false;
+    },
+    /* 详情 */
+    showOrderDetailModal() {
+      this.detailShow = true;
+    },
+    hideOrderDetailModal(){
+      this.detailShow = false;
     }
   }
 };
