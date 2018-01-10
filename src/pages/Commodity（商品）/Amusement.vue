@@ -69,16 +69,16 @@
               </Select>
             </FormItem>
             </Col>
-            <Col span="4"  offset="1">
+            <Col span="4" offset="1">
             <FormItem label="商品变更来源：" :label-width="100">
-              <Select placeholder="请选择" v-model="formItem.acountState"  size="small">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">BOSS</Option>
                 <Option value="blocked">商户端</Option>
               </Select>
             </FormItem>
             </Col>
             <Col span="4" offset="1">
-            <FormItem label="商品类型：" >
+            <FormItem label="商品类型：">
               <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">CRM商品</Option>
                 <Option value="blocked">团购代销商品</Option>
@@ -104,7 +104,7 @@
       <Card>
         <!-- 新增店铺 -->
         <AddGoods></AddGoods>
-        <!-- <EnterDetails :detailsShow="detailsShow"  v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails> -->
+        <GoodsDetail :detailShow="detailShow" v-if="detailShow" @hideGoodsDetailModal="hideGoodsDetailModal" :isCheck="isCheck"></GoodsDetail>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -117,19 +117,17 @@
 </template>
 
 <script>
-import AddGoods from './AddGoods'
+import AddGoods from "./components/AddGoods";
+import GoodsDetail from "./components/GoodsDetail";
 export default {
   components: {
-    AddGoods
+    AddGoods,
+    GoodsDetail
   },
   data() {
     return {
-      optionsTest: {
-        disabledDate(date) {}
-      },
-      optionsTest1: {
-        disabledDate(date) {}
-      },
+      detailShow: false,
+      isCheck: false,
       formItem: {
         contractNo: "", // 合同编号
         ownerName: "", // 甲方民称
@@ -243,7 +241,7 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showEnterDetailsModal();
+                          this.showGoodsCheckModal();
                         }
                       }
                     },
@@ -276,7 +274,9 @@ export default {
                         "margin-right": "5px"
                       },
                       on: {
-                        click() {}
+                        click: () => {
+                          this.showGoodsDetailModal();
+                        }
                       }
                     },
                     "详情"
@@ -378,11 +378,16 @@ export default {
       params.row.state = !params.row.state;
     },
     /* 弹出详情页 */
-    showEnterDetailsModal() {
-      // this.detailsShow = true;
+    showGoodsDetailModal() {
+      this.detailShow = true;
     },
-    hideEnterDetailsModal() {
-      // this.detailsShow = false;
+    hideGoodsDetailModal() {
+      this.isCheck = false;
+      this.detailShow = false;
+    },
+    showGoodsCheckModal(){
+      this.isCheck = true;
+      this.detailShow = true;
     }
   }
 };

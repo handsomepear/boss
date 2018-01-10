@@ -103,8 +103,8 @@
 </template>
 
 <script>
-import StoragePos from './StoragePos';
-import PosDetail from './PosDetail';
+import StoragePos from './components/StoragePos';
+import PosDetail from './components/PosDetail';
 export default {
   components: {
     StoragePos,

@@ -66,14 +66,14 @@ export const appRouters = [
         name: 'roleManage',
         icon: 'person',
         title: '角色管理',
-        component: resolve => { require(['@/pages/Authority（权限）/components/RoleManage.vue'], resolve) }
+        component: resolve => { require(['@/pages/Authority（权限）/RoleManage.vue'], resolve) }
       },
       {
         path: 'staff-acount',
         name: 'staffAcount',
         icon: 'person-stalker',
         title: '员工账号',
-        component: resolve => { require(['@/pages/Authority（权限）/components/StaffAcount.vue'], resolve) }
+        component: resolve => { require(['@/pages/Authority（权限）/StaffAcount.vue'], resolve) }
       }
     ]
   },
@@ -90,21 +90,21 @@ export const appRouters = [
         name: 'enterCheck',
         icon: 'ios-checkmark',
         title: '入驻审核',
-        component: resolve => { require(['@/pages/Contract（合同）/components/EnterCheck.vue'], resolve); }
+        component: resolve => { require(['@/pages/Contract（合同）/EnterCheck.vue'], resolve); }
       },
       {
         path: 'contract-list',
         name: 'contractList',
         icon: 'ios-list',
         title: '合同列表',
-        component: resolve => { require(['@/pages/Contract（合同）/components/ContractList.vue'], resolve); }
+        component: resolve => { require(['@/pages/Contract（合同）/ContractList.vue'], resolve); }
       },
       {
         path: 'contract-template',
         name: 'contractTemplate',
         icon: 'ios-paper-outline',
         title: '合同模板',
-        component: resolve => { require(['@/pages/Contract（合同）/components/ContractTemplate.vue'], resolve); }
+        component: resolve => { require(['@/pages/Contract（合同）/ContractTemplate.vue'], resolve); }
       }
     ]
   },
@@ -121,14 +121,14 @@ export const appRouters = [
         name: 'amusement',
         icon: 'ios-americanfootball',
         title: '游乐商户管理',
-        component: resolve => { require(['@/pages/Merchant（商户）/components/Amusement.vue'], resolve) }
+        component: resolve => { require(['@/pages/Merchant（商户）/Amusement.vue'], resolve) }
       },
       {
         path: 'education',
         name: 'education',
         icon: 'university',
         title: '教育商户管理',
-        component: resolve => { require(['@/pages/Merchant（商户）/components/Education.vue'], resolve) }
+        component: resolve => { require(['@/pages/Merchant（商户）/Education.vue'], resolve) }
       }
     ]
   },
@@ -145,14 +145,14 @@ export const appRouters = [
         name: 'amusementCommodity',
         icon: 'ios-americanfootball',
         title: '游乐商品管理',
-        component: resolve => { require(['@/pages/Commodity（商品）/components/Amusement.vue'], resolve) }
+        component: resolve => { require(['@/pages/Commodity（商品）/Amusement.vue'], resolve) }
       },
       {
         path: 'education',
         name: 'educationCommodity',
         icon: 'university',
         title: '教育商品管理',
-        component: resolve => { require(['@/pages/Commodity（商品）/components/Education.vue'], resolve) }
+        component: resolve => { require(['@/pages/Commodity（商品）/Education.vue'], resolve) }
       }
     ]
   },
@@ -169,14 +169,14 @@ export const appRouters = [
         name: 'amusementOrder',
         icon: 'ios-americanfootball',
         title: '游乐订单管理',
-        component: resolve => { require(['@/pages/Order（订单）/components/Amusement.vue'], resolve) }
+        component: resolve => { require(['@/pages/Order（订单）/Amusement.vue'], resolve) }
       },
       {
         path: 'education',
         name: 'educationOrder',
         icon: 'university',
         title: '教育订单管理',
-        component: resolve => { require(['@/pages/Order（订单）/components/Education.vue'], resolve) }
+        component: resolve => { require(['@/pages/Order（订单）/Education.vue'], resolve) }
       }
     ]
   },
@@ -211,21 +211,21 @@ export const appRouters = [
         name: 'bannerManage',
         icon: 'images',
         title: 'Banner管理',
-        component: resolve => { require(['@/pages/MarketingCenter（营销中心）/components/bannerManage.vue'], resolve) }
+        component: resolve => { require(['@/pages/MarketingCenter（营销中心）/bannerManage.vue'], resolve) }
       },
       {
         path: 'famous-person',
         name: 'famousPerson',
         icon: 'android-person',
         title: '名人堂推荐',
-        component: resolve => { require(['@/pages/MarketingCenter（营销中心）/components/FamousPerson.vue'], resolve) }
+        component: resolve => { require(['@/pages/MarketingCenter（营销中心）/FamousPerson.vue'], resolve) }
       },
       {
         path: 'same-mother',
         name: 'sameMother',
         icon: 'woman',
         title: '同龄妈妈推荐',
-        component: resolve => { require(['@/pages/MarketingCenter（营销中心）/components/SameMother.vue'], resolve) }
+        component: resolve => { require(['@/pages/MarketingCenter（营销中心）/SameMother.vue'], resolve) }
       }
     ]
   },
@@ -243,7 +243,7 @@ export const appRouters = [
         name: 'exportFile',
         icon: 'ios-download-outline',
         title: '导出文件',
-        component: resolve => { require(['@/pages/Operation（运营）/components/ExportFile.vue'], resolve) }
+        component: resolve => { require(['@/pages/Operation（运营）/ExportFile.vue'], resolve) }
       }
     ]
   },
@@ -260,28 +260,28 @@ export const appRouters = [
         name: 'amusementAppraise',
         icon: 'ios-americanfootball-outline',
         title: '游乐评价',
-        component: resolve => { require(['@/pages/CustomerService（客服）/components/AmusementAppraise.vue'], resolve) }
+        component: resolve => { require(['@/pages/CustomerService（客服）/AmusementAppraise.vue'], resolve) }
       },
       {
         path: 'education-appraise',
         name: 'educationAppraise',
         icon: 'university',
         title: '教育评价',
-        component: resolve => { require(['@/pages/CustomerService（客服）/components/EducationAppraise.vue'], resolve) }
+        component: resolve => { require(['@/pages/CustomerService（客服）/EducationAppraise.vue'], resolve) }
       },
       {
         path: 'amusement-enquiry',
         name: 'amusementEnquiry',
         icon: 'ios-americanfootball-outline',
         title: '游乐问询',
-        component: resolve => { require(['@/pages/CustomerService（客服）/components/AmusementEnquiry.vue'], resolve) }
+        component: resolve => { require(['@/pages/CustomerService（客服）/AmusementEnquiry.vue'], resolve) }
       },
       {
         path: 'education-enquiry',
         name: 'educationEnquiry',
         icon: 'university',
         title: '教育问询',
-        component: resolve => { require(['@/pages/CustomerService（客服）/components/EducationEnquiry.vue'], resolve) }
+        component: resolve => { require(['@/pages/CustomerService（客服）/EducationEnquiry.vue'], resolve) }
       }
     ]
   },
@@ -299,7 +299,7 @@ export const appRouters = [
         name: 'posManage',
         icon: 'outlet',
         title: 'POS管理',
-        component: resolve => { require(['@/pages/Equipment（设备）/components/PosManage.vue'], resolve) }
+        component: resolve => { require(['@/pages/Equipment（设备）/PosManage.vue'], resolve) }
       },
     ]
   },
@@ -316,14 +316,14 @@ export const appRouters = [
         name: 'amusementSettlement',
         icon: 'ios-americanfootball-outline',
         title: '游乐结算',
-        component: resolve => { require(['@/pages/Settlement（结算）/components/amusement.vue'], resolve) }
+        component: resolve => { require(['@/pages/Settlement（结算）/amusement.vue'], resolve) }
       },
       {
         path: 'education',
         name: 'educationSettlement',
         icon: 'university',
         title: '教育结算',
-        component: resolve => { require(['@/pages/Settlement（结算）/components/Education.vue'], resolve) }
+        component: resolve => { require(['@/pages/Settlement（结算）/Education.vue'], resolve) }
       }
     ]
   },
@@ -340,14 +340,14 @@ export const appRouters = [
         name: 'amusementRefund',
         title: '游乐退款',
         icon: 'ios-americanfootball-outline',
-        component: resolve => { require(['@/pages/Refund（退款）/components/amusement.vue'], resolve) }
+        component: resolve => { require(['@/pages/Refund（退款）/amusement.vue'], resolve) }
       },
       {
         path: 'education',
         name: 'educationRefund',
         icon: 'university',
         title: '教育退款',
-        component: resolve => { require(['@/pages/Refund（退款）/components/Education.vue'], resolve) }
+        component: resolve => { require(['@/pages/Refund（退款）/Education.vue'], resolve) }
       }
     ]
   },

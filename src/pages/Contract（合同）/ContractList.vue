@@ -113,9 +113,9 @@
 </template>
 
 <script>
-import AddContract from "./AddContract";
-import ContractDetails from "./ContractDetails";
-import ChangeSaler from "./ChangeSaler";
+import AddContract from "./components/AddContract";
+import ContractDetails from "./components/ContractDetails";
+import ChangeSaler from "./components/ChangeSaler";
 export default {
   components: {
     AddContract,

@@ -2,67 +2,56 @@
 
 </style>
 <template>
-  <div class="contract-tpl">
-    <div class="contracttpl-top">
+  <div class="enter-check">
+    <div class="enter-top">
       <Card>
         <Form :label-width="90" ref="formStaff" v-model="formItem" label-position="left">
           <Row>
             <Col span="5">
-            <FormItem label="模板序号：">
-              <Input type="text" placeholder="可输入部分序号名字" v-model="formItem.staffName" size="small" />
+            <FormItem label="入驻人：">
+              <Input type="text" placeholder="请输入入驻人姓名" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
-            <FormItem label="模板名称：">
+            <FormItem label="入驻人手机：">
               <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
-            <FormItem label="创建人：">
+            <FormItem label="合同编号：">
               <Input type="text" v-model="formItem.roleName" placeholder="可输入部分编号数字" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
-            <Col span="5">
-            <FormItem label="适用对象：">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="active">个人合作</Option>
-                <Option value="blocked">机构合作</Option>
-              </Select>
-            </FormItem>
-            </Col>
-            <Col span="5" offset="1">
-            <FormItem label="适用业态：">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="blocked">游乐</Option>
-                <Option value="blocked">教育</Option>
-              </Select>
-            </FormItem>
-            </Col>
-            <Col span="5" offset="1">
-            <FormItem label="模板状态：">
-              <Select placeholder="全部状态" v-model="formItem.acountState"  size="small">
-                <Option value="active">待启用</Option>
-                <Option value="blocked">启用中</Option>
-                <Option value="blocked">已废弃</Option>
-              </Select>
+            <Col span="6">
+            <FormItem label="店铺名称：">
+              <Input type="text" placeholder="该商户成功入驻后，名下任一店铺名称" v-model="formItem.leaderName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
-            <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
-            <Col span="6">
-            <FormItem label="启用日期（始）：" :label-width="132">
-              <DatePicker type="date" v-model="formItem.startDate" size="small"></DatePicker>
+            <Col span="4">
+            <FormItem label="行政区域：">
+              <Select placeholder="请选择" v-model="formItem.acountState"  size="small">
+                <Option value="active">海淀区</Option>
+                <Option value="blocked">朝阳区</Option>
+                <Option value="blocked">西城区</Option>
+                <Option value="blocked">东城区</Option>
+                <Option value="blocked">昌平区</Option>
+              </Select>
             </FormItem>
             </Col>
-            <Col span="6" offset="1">
-            <FormItem label="启用日期（止）：" :label-width="132">
-              <DatePicker type="date" v-model="formItem.endDate" size="small"></DatePicker>
+            <Col span="4" offset="1">
+            <FormItem label="账号状态：">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
+                <Option value="active">全部状态</Option>
+                <Option value="blocked">通过</Option>
+                <Option value="blocked">驳回</Option>
+              </Select>
             </FormItem>
             </Col>
-            <Col span="8" offset="1" style="text-align: right">
+            <Col span="12" offset="1" style="text-align: right">
             <FormItem>
               <div class="button-con">
                 <Button type="primary" @click="submit">查询</Button>
@@ -77,8 +66,9 @@
     <div class="data-con">
       <Card>
         <!-- 添加新账号 -->
-        <AddTemplate></AddTemplate>
-        <TemplateDetails :detailsShow="detailsShow" v-if="detailsShow" @hideTplDetailsModal="hideTplDetailsModal" :tplInfo="tplInfo"></TemplateDetails>
+        <AddEnter></AddEnter>
+        <!-- 详情/审核 -->
+        <EnterDetails :detailsShow="detailsShow" :isCheck="isCheck" v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -92,18 +82,18 @@
 </template>
 
 <script>
-import AddTemplate from "./AddTemplate";
-import TemplateDetails from "./TemplateDetails";
+import AddEnter from "./components/AddEnter";
+import EnterDetails from "./components/EnterDetails";
 export default {
   components: {
-    AddTemplate,
-    TemplateDetails
+    AddEnter,
+    EnterDetails
   },
   data() {
     return {
-      tplInfo: {}, // 表格对应的数据 
       detailsShow: false,
       accountState: false,
+      isCheck: false,
       formItem: {
         staffName: "", // 员工姓名
         staffPhone: "", // 员工手机
@@ -119,44 +109,36 @@ export default {
         staffAcounts: [
           // columns设置
           {
-            title: "序号",
+            title: "入驻人",
             key: "entername"
           },
           {
-            title: "模板名称",
+            title: "入驻人手机",
             key: "phone"
           },
           {
-            title: "适用业态",
+            title: "店铺名称",
             key: "shopname"
           },
           {
-            title: "适用对象",
+            title: "行政区域",
             key: "area"
           },
           {
-            title: "创建日期",
+            title: "申请日期",
             key: "applydate"
           },
           {
-            title: "模板签约数",
+            title: "审核通过日期",
             width: 110,
             key: "checkdate"
           },
           {
-            title: "替换模板序号",
+            title: "入驻状态",
             key: "enterstate"
           },
           {
-            title: "启用日期",
-            key: "contractNO"
-          },
-          {
-            title: "创建人",
-            key: "contractNO"
-          },
-          {
-            title: "模板状态",
+            title: "合同编号",
             key: "contractNO"
           },
           {
@@ -179,6 +161,7 @@ export default {
                     },
                     on: {
                       click: () => {
+                        console.log(this);
                         this.revise(params);
                       }
                     }
@@ -197,11 +180,43 @@ export default {
                     },
                     on: {
                       click: () => {
-                        this.showTplDetailsModal(params)
+                        this.showEnterDetailsModal();
                       }
                     }
                   },
                   "详情"
+                ),
+                h(
+                  "Button",
+                  {
+                    props: {
+                      type: "info",
+                      size: "small"
+                    },
+                    style: {
+                      "margin-right": "5px"
+                    },
+                    on: {
+                      click: () => {
+                        this.showEnterCheckModal();
+                      }
+                    }
+                  },
+                  "审核"
+                ),
+                h(
+                  "Button",
+
+                  {
+                    props: {
+                      type: "info",
+                      size: "small"
+                    },
+                    on: {
+                      click() {}
+                    }
+                  },
+                  "重置密码"
                 )
               ]);
             }
@@ -258,10 +273,32 @@ export default {
     };
   },
   methods: {
+    /* 重置密码 */
+    resetPwd(fullname) {
+      /* 重置密码 发送请求 请求成功之后 弹窗显示 */
+
+      this.$Modal.success({
+        content: `员工${fullname}已经重置为初始密码`
+      });
+
+      /* 重置密码 发送请求 请求出错之后 弹窗显示 */
+
+      // this.$Modal.error({
+      //   content: '重置密码出错，请稍候再试'
+      // })
+    },
     /* 提交查询 */
     submit() {
-      const filterObj = {};
+      const filterObj = {
+        staffName: this.formItem.staffName || "",
+        staffPhone: this.formItem.staffPhone || "",
+        roleName: this.formItem.roleName || "",
+        leaderName: this.formItem.leaderName || "",
+        username: this.formItem.username || "",
+        acountState: this.formItem.acountState || ""
+      };
       // 发送个请求 把查询的传递过去 然后拉过来渲染一下
+      console.log(JSON.stringify(filterObj));
     },
     /* 表单重置 */
     handleReset(name) {
@@ -272,15 +309,23 @@ export default {
     revise(revise) {
       // 弹窗 + 表单回填
     },
+    /* 冻结账号 */
+    block(params) {
+      params.row.state = !params.row.state;
+    },
     /* 弹出详情页 */
-    showTplDetailsModal(params) {
-      Object.assign(this.tplInfo, params)
+    showEnterDetailsModal() {
+      this.isCheck = false;
       this.detailsShow = true;
     },
     /* 隐藏详情弹窗 */
-    hideTplDetailsModal() {
-      this.tplInfo = {};
+    hideEnterDetailsModal() {
       this.detailsShow = false;
+    },
+    /* 显示审核弹窗 */
+    showEnterCheckModal() {
+      this.isCheck = true;
+      this.detailsShow = true;
     }
   }
 };

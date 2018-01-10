@@ -141,8 +141,8 @@
 </template>
 
 <script>
-import AddUser from './AddUser'
-import UserDetail from './UserDetail'
+import AddUser from './components/AddUser'
+import UserDetail from './components/UserDetail'
 export default {
   components: {
     AddUser,

@@ -7,75 +7,46 @@
       <Card>
         <Form :label-width="90" ref="contractForm" v-model="formItem" label-position="left">
           <Row>
-            <Col span="5">
-            <FormItem label="订单编号：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
+            <Col span="4">
+            <FormItem label="合同编号：">
+              <Input type="text" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
-            <Col span="5" offset="1">
-            <FormItem label="商品名称：">
+            <Col span="4" offset="1">
+            <FormItem label="店铺名称：">
               <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
-            <Col span="5" offset="1">
-            <FormItem label="购买用户：">
-              <Input type="text" v-model="formItem.roleName" placeholder="请输入销售人员姓名" size="small" />
+            <Col span="4" offset="1">
+            <FormItem label="结算单编号：">
+              <Input type="text" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
-            <Col span="5" offset="1">
-            <FormItem label="用户手机号：">
-              <Input type="text" v-model="formItem.roleName" placeholder="请输入销售人员姓名" size="small" />
-            </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="5">
-            <FormItem label="店铺名称：">
-              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small" />
+            <Col span="4" offset="1">
+            <FormItem label="销售人员：">
+              <Input type="text" v-model="formItem.roleName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="4">
-            <FormItem label="卡类型：">
+            <FormItem label="结算单状态：">
               <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="1">单词卡</Option>
-                <Option value="2">多次卡</Option>
-                <Option value="2">储值卡</Option>
+                <Option value="1">待商户确认</Option>
+                <Option value="2">待主管确认</Option>
+                <Option value="2">待总监确认</Option>
+                <Option value="2">待总管副总确认</Option>
+                <Option value="2">待总经理确认</Option>
+                <Option value="2">待结算</Option>
+                <Option value="2">已结算</Option>
               </Select>
             </FormItem>
             </Col>
             <Col span="4" offset="1">
-            <FormItem label="订单状态：">
-              <Select placeholder="全部状态" v-model="formItem.acountState" size="small">
-                <Option value="11">待支付</Option>
-                <Option value="12">支付成功</Option>
-                <Option value="13">支付失败</Option>
-                <Option value="14">服务中</Option>
-                <Option value="15">服务完成</Option>
-                <Option value="15">服务中止</Option>
-                <Option value="15">退款中</Option>
-                <Option value="15">部分退款完成</Option>
-                <Option value="15">退款完成</Option>
-              </Select>
-            </FormItem>
-            </Col>
-            <Col span="4" offset="1">
-            <FormItem label="支付方式：" :label-width="100">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="active">微信网页</Option>
-                <Option value="blocked">微信APP</Option>
-                <Option value="blocked">微信POS</Option>
-                <Option value="blocked">支付宝网页</Option>
-                <Option value="blocked">支付宝APP</Option>
-                <Option value="blocked">支付宝POS</Option>
-                <Option value="blocked">现金支付</Option>
-                <Option value="blocked">现金POS</Option>
-                <Option value="blocked">刷卡支付</Option>
-                <Option value="blocked">刷卡POS</Option>
-                <Option value="blocked">储值卡支付</Option>
-                <Option value="blocked">过往支付</Option>
-                <Option value="blocked">0元免支付</Option>
+            <FormItem label="发票状态：">
+              <Select v-model="formItem.acountState" size="small">
+                <Option value="11">已开发票</Option>
+                <Option value="12">未开发票</Option>
               </Select>
             </FormItem>
             </Col>
@@ -83,12 +54,12 @@
           <Row>
             <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
             <Col span="6">
-            <FormItem label="订单支付时间（始）：" :label-width="150">
+            <FormItem label="账期结束时间（始）：" :label-width="150">
               <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
             </FormItem>
             </Col>
             <Col span="6" offset="1">
-            <FormItem label="订单支付时间（止）：" :label-width="150">
+            <FormItem label="账期结束时间（止）：" :label-width="150">
               <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
             </FormItem>
             </Col>
@@ -97,7 +68,6 @@
               <div class="button-con">
                 <Button type="primary" @click="submit">查询</Button>
                 <Button type="primary" style="margin-left: 20px">重置</Button>
-                <Button type="primary" style="margin-left: 20px">导出</Button>
               </div>
             </FormItem>
             </Col>
@@ -107,8 +77,9 @@
     </div>
     <div class="data-con">
       <Card>
-        <OrderAction :modalShow="modalShow" :actionType="actionType" v-if="modalShow" @hideOrderActionModal="hideOrderActionModal"></OrderAction>
-        <OrderDetail :detailShow="detailShow" v-if="detailShow" @hideOrderDetailModal="hideOrderDetailModal"></OrderDetail>
+        <!-- 配置审批流 -->
+        <ConfigApproval></ConfigApproval>
+        <StatementsDetail :detailShow="detailShow" v-if="detailShow" @hideStatementsModal="hideStatementsModal"></StatementsDetail>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
@@ -121,18 +92,16 @@
 </template>
 
 <script>
-import OrderAction from "./OrderAction.vue";
-import OrderDetail from "./OrderDetail.vue";
+import ConfigApproval from "./components/ConfigApproval";
+import StatementsDetail from "./components/StatementsDetail";
 export default {
   components: {
-    OrderAction,
-    OrderDetail
+    ConfigApproval,
+    StatementsDetail
   },
   data() {
     return {
       detailShow: false,
-      modalShow: false,
-      actionType: "", // 表格中按钮操作的类型 ’关联用户‘ 、‘消费确认’、‘更换商品’
       optionsTest: {
         disabledDate(date) {}
       },
@@ -159,67 +128,67 @@ export default {
         staffAcounts: [
           // columns设置
           {
-            title: "订单编号",
+            title: "合同编号",
             key: "contractNo"
           },
           {
-            title: "商品名称",
+            title: "店铺名称",
             key: "ownerName"
           },
           {
-            title: "卡类型",
+            title: "结束账单编号",
             key: "representative"
           },
           {
-            title: "店铺名称",
+            title: "结算账期",
             key: "representativePhone"
           },
           {
-            title: "商品单价",
+            title: "出账时间",
             key: "collaborateModel"
           },
           {
-            title: "购买数量",
+            title: "代收总金额",
             key: "shopName"
           },
           {
-            title: "订单总价",
+            title: "平台信息费",
             key: "startDate"
           },
           {
-            title: "实际支付",
+            title: "商户结算数",
             key: "endDate"
           },
           {
-            title: "订单状态",
+            title: "实际结算数",
             key: "contractNO"
           },
           {
-            title: "购买用户",
-            key: "saler"
+            title: "发票状态",
+            key: "contractNO"
           },
           {
-            title: "用户手机号",
-            key: "saler"
+            title: "结算单状态",
+            key: "contractNO"
           },
           {
-            title: "支付方式",
-            key: "saler"
+            title: "销售人员",
+            key: "contractNO"
           },
           {
-            title: "下单时间",
-            key: "saler"
+            title: "上一级审批人",
+            key: "contractNO"
           },
           {
-            title: "支付时间",
-            key: "saler"
+            title: "当前审批人",
+            key: "contractNO"
           },
           {
             title: "操作",
             key: "action",
-            width: 250,
+            width: 200,
             align: "center",
-            // 创建row上面的按钮
+            // 操作按钮
             render: (h, params) => {
               return h(
                 "div",
@@ -241,11 +210,12 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showOrderActionModal("relevance");
+                          console.log(this);
+                          this.revise(params);
                         }
                       }
                     },
-                    "关联用户"
+                    "同意结算"
                   ),
                   h(
                     "Button",
@@ -259,11 +229,43 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showOrderActionModal("consume");
+                          this.showEnterDetailsModal();
                         }
                       }
                     },
-                    "消费确认"
+                    "不同意结算"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click() {}
+                      }
+                    },
+                    "结算完成确认"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click() {}
+                      }
+                    },
+                    "发票已开"
                   ),
                   h(
                     "Button",
@@ -277,11 +279,11 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showOrderActionModal("change");
+                          this.showStatementsModal();
                         }
                       }
                     },
-                    "更换商品"
+                    "结算单详情"
                   ),
                   h(
                     "Button",
@@ -294,12 +296,26 @@ export default {
                         "margin-right": "5px"
                       },
                       on: {
-                        click: () => {
-                          this.showOrderDetailModal();
-                        }
+                        click() {}
                       }
                     },
-                    "详情"
+                    "店铺详情"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click() {}
+                      }
+                    },
+                    "合同详情"
                   )
                 ]
               );
@@ -366,6 +382,7 @@ export default {
       });
 
       /* 重置密码 发送请求 请求出错之后 弹窗显示 */
+
       // this.$Modal.error({
       //   content: '重置密码出错，请稍候再试'
       // })
@@ -396,19 +413,11 @@ export default {
     block(params) {
       params.row.state = !params.row.state;
     },
-    /* 弹出订单操作页 */
-    showOrderActionModal(actionType) {
-      this.actionType = actionType;
-      this.modalShow = true;
-    },
-    hideOrderActionModal() {
-      this.modalShow = false;
-    },
-    /* 详情 */
-    showOrderDetailModal() {
+    /* 弹出详情页 */
+    showStatementsModal() {
       this.detailShow = true;
     },
-    hideOrderDetailModal(){
+    hideStatementsModal() {
       this.detailShow = false;
     }
   }

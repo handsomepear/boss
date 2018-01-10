@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import AddRole from "./AddRole"; // 添加角色
-import RoleDetail from "./RoleDetail";
+import AddRole from "./components/AddRole"; // 添加角色
+import RoleDetail from "./components/RoleDetail";
 export default {
   components: {
     AddRole,

@@ -46,15 +46,14 @@
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
-          <!-- 如何把两个page组件关联起来？ -->
-        </div>
+          </div>
       </Card>
     </div>
   </div>
 </template>
 
 <script>
-import AddAcount from "./AddAcount";
+import AddAcount from "./components/AddAcount";
 export default {
   components: {
     AddAcount
