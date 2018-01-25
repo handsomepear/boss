@@ -1,5 +1,8 @@
 <style scoped>
-
+.table-top {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
 <template>
   <div class="contract-list">
@@ -126,13 +129,16 @@
     </div>
     <div class="data-con">
       <Card>
-        <!-- 添加新账号 -->
-        <!-- <Button type="primary">新增模板</Button> -->
-        <AddUser></AddUser>
+        
         <UserDetail :detailShow="detailShow"  v-if="detailShow" @hideUserDetailModal="hideUserDetailModal"></UserDetail>
         <div class="table-con" style="text-align: right">
+          <div class="table-top">
+            <!-- 添加新账号 -->
+        <!-- <Button type="primary">新增模板</Button> -->
+          <AddUser></AddUser>
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+          </div>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
         </div>
       </Card>

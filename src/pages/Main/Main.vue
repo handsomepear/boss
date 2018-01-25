@@ -4,13 +4,25 @@
 
 <template>
   <div class="main" style="height: 100%">
-    <div class="sidebar-menu-con" style="">
-      <Sider></Sider>
+    <div class="sidebar-menu-con" :style="{'width': shrink ? '60px' : '200px',overflow: shrink ? 'visible' : 'auto'}">
+      <Sider :shrink="shrink">
+        <div slot="top" class="logo-con" v-show="!shrink">
+          <a href="javascript:;" class="logo">BOSS</a>
+        </div>
+        <div slot="top" class="logo-con" v-show="shrink">
+          <a href="javascript:;" class="logo">B</a>
+        </div>
+      </Sider>
     </div>
-    <div class="main-header-con">
+    <div class="main-header-con" :style="{paddingLeft: shrink?'60px':'200px'}">
+      <div class="navicon-con">
+        <Button :style="{transform: 'rotateZ(' + (this.shrink ? '-90' : '0') + 'deg)'}" type="text" @click="toggleClick">
+          <Icon type="navicon" size="32"></Icon>
+        </Button>
+      </div>
       <mainHeader></mainHeader>
     </div>
-    <div class="single-page-con">
+    <div class="single-page-con" :style="{left: shrink?'60px':'200px'}">
       <div class="single-page">
         <keep-alive>
           <router-view></router-view>
@@ -20,17 +32,23 @@
   </div>
 </template>
 
-
 <script>
 import mainHeader from "@/components/Header/Header.vue";
 import Sider from "@/components/Sider/Sider.vue";
 export default {
   data() {
-    return {};
+    return {
+      shrink: false
+    };
   },
   components: {
     Sider,
     mainHeader
+  },
+  methods: {
+    toggleClick() {
+      this.shrink = !this.shrink;
+    }
   }
 };
 </script>

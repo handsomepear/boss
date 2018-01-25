@@ -12,7 +12,7 @@
   <div class="config-approval">
     <Button type="primary" @click="showAddCountModal">配置审批流</Button>
     <!-- 注册用户 -->
-    <Modal v-model="addCount" title="配置审批流" width="60%" @on-ok="ok" @on-cancel="cancel" :styles="{marginBottom: '100px'}">
+    <Modal v-model="addCount" title="配置审批流" width="61%" @on-ok="ok" @on-cancel="cancel" :styles="{marginBottom: '100px'}">
       <div class="config-approval-con">
         <Form :label-width="110" label-position="right">
           <FormItem label="商户确认人：">

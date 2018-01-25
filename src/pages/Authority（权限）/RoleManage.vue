@@ -6,6 +6,10 @@
   .table-con {
     text-align: right;
   }
+  .table-top {
+    display: flex;
+    justify-content: space-between
+  }
 }
 </style>
 
@@ -29,12 +33,15 @@
     <div class="data-con">
       <Card>
         <!-- 添加角色 -->
-        <AddRole></AddRole>
+
         <!-- 角色详情 -->
         <RoleDetail :detailShow="detailShow" v-if="detailShow" @hideRoleDetailModal="hideRoleDetailModal"></RoleDetail>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
-          <Page :total="totalPage" show-sizer :page-size="pageSize" :page-size-opts="pageSizeOpts"></Page>
+          <div class="table-top">
+            <AddRole></AddRole>
+            <Page :total="totalPage" show-sizer :page-size="pageSize" :page-size-opts="pageSizeOpts"></Page>
+          </div>
           <Table border :columns="columns1" :data="data1" style="margin: 20px 0"></Table>
         </div>
       </Card>

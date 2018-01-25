@@ -25,7 +25,7 @@
           <FormItem label="※ 供货商：">
             <Row>
               <Col span="4">
-              <Select placeholder="请选择" size="small">
+              <Select placeholder="请选择" size="small" transfer>
                 <Option value="">世麦科技</Option>
                 <Option value="">旺POS</Option>
                 <Option value="">新大陆</Option>

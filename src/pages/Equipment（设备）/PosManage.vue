@@ -1,5 +1,8 @@
 <style scoped>
-
+.table-top {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
 <template>
   <div class="contract-list">
@@ -88,13 +91,16 @@
     </div>
     <div class="data-con">
       <Card>
-        <!-- 入库管理 -->
-        <StoragePos></StoragePos>
+       
         <!-- POS详情 -->
         <PosDetail :detailShow="detailShow" v-if="detailShow" @hidePosDetailModal="hidePosDetailModal"></PosDetail>
         <div class="table-con" style="text-align: right">
+           <div class="table-top">
+             <!-- 入库管理 -->
+          <StoragePos></StoragePos>
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+           </div>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
         </div>
       </Card>

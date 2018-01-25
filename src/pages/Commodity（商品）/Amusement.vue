@@ -1,5 +1,8 @@
 <style scoped>
-
+  .table-top {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
 <template>
   <div class="contract-list">
@@ -103,11 +106,14 @@
     <div class="data-con">
       <Card>
         <!-- 新增店铺 -->
-        <AddGoods></AddGoods>
+        
         <GoodsDetail :detailShow="detailShow" v-if="detailShow" @hideGoodsDetailModal="hideGoodsDetailModal" :isCheck="isCheck"></GoodsDetail>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
-          <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+          <div class="table-top">
+            <AddGoods></AddGoods>
+             <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+          </div>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
           <!-- 如何把两个page组件关联起来？ -->
         </div>

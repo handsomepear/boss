@@ -292,7 +292,6 @@ export const appRouters = [
     title: "设备管理",
     icon: 'usb',
     component: Main,
-    isShrink: true,
     children: [
       {
         path: 'pos-manage',

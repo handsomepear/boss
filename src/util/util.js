@@ -29,3 +29,11 @@ export default {
    if(!name) return;
    window.localStorage.getItem(name)
  }
+
+export function oneOf(ele, targetArr){
+  if(targetArr.indexOf(ele) >= 0){
+    return true;
+  }else {
+    return false;
+  }
+}

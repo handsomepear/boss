@@ -1,5 +1,8 @@
 <style scoped>
-
+  .table-top {
+    display: flex;
+    justify-content: space-between;
+  }
 </style>
 <template>
   <div class="contract-tpl">
@@ -76,15 +79,17 @@
     </div>
     <div class="data-con">
       <Card>
-        <!-- 添加新账号 -->
-        <AddTemplate></AddTemplate>
+        
         <TemplateDetails :detailsShow="detailsShow" v-if="detailsShow" @hideTplDetailsModal="hideTplDetailsModal" :tplInfo="tplInfo"></TemplateDetails>
         <div class="table-con" style="text-align: right">
+          <div class="table-top">
+            <!-- 添加新账号 -->
+          <AddTemplate></AddTemplate>
           <!-- 分页插件和表格内容显示 -->
           <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+          </div>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
           
-          <!-- 如何把两个page组件关联起来？ -->
         </div>
       </Card>
     </div>

@@ -6,7 +6,9 @@ import App from './App'
 import {router} from './router'
 import store from './store/index.js'
 import iview from 'iview'
-import 'iview/dist/styles/iview.css'
+// import 'iview/src/styles/index.less'
+/* 引入自己的样式 覆盖默认样式 */
+import '@/assets/css/my-iview.less'
 import { fetch, post } from './util/http.js'
 
 // 封装axios的get请求
