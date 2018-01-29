@@ -8,7 +8,7 @@
   }
   .table-top {
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
   }
 }
 </style>
@@ -32,13 +32,14 @@
     </div>
     <div class="data-con">
       <Card>
-        <!-- 添加角色 -->
-
         <!-- 角色详情 -->
         <RoleDetail :detailShow="detailShow" v-if="detailShow" @hideRoleDetailModal="hideRoleDetailModal"></RoleDetail>
+        <!-- 成员管理 -->
+        <MemberManage :showMemberModal="showMemberModal" :memberCount="memberCount" v-if="showMemberModal" @hideMember="hideMember"></MemberManage>
         <div class="table-con" style="text-align: right">
           <!-- 分页插件和表格内容显示 -->
           <div class="table-top">
+            <!-- 添加角色 -->
             <AddRole></AddRole>
             <Page :total="totalPage" show-sizer :page-size="pageSize" :page-size-opts="pageSizeOpts"></Page>
           </div>
@@ -53,14 +54,18 @@
 <script>
 import AddRole from "./components/AddRole"; // 添加角色
 import RoleDetail from "./components/RoleDetail";
+import MemberManage from "./components/MemberManage"; // 成员管理
 export default {
   components: {
     AddRole,
-    RoleDetail
+    RoleDetail,
+    MemberManage
   },
   data() {
     return {
       detailShow: false,
+      showMemberModal: false,
+      memberCount: null,
       roleName: "handsonZPS", // 角色名称
       totalPage: 300,
       pageSize: 15,
@@ -80,7 +85,29 @@ export default {
         },
         {
           title: "当天赋予人数",
-          key: "currentPeople"
+          key: "currentPeople",
+          align: "center",
+          render:(h, params) => {
+            // 表格的内容及一些属性都在params里面 可以动态渲染表格中的内容
+            return h("div", [
+              h(
+                "span",
+                {
+                  style: {
+                    "cursor": "pointer",
+                    "color": "blue"
+                  },
+                  on: {
+                    click: () => {
+                      // 显示成员管理
+                      this.showMember(params.row.currentPeople)
+                    }
+                  }
+                },
+                params.row.currentPeople
+              )
+            ])
+          }
         },
         {
           title: "操作",
@@ -102,6 +129,7 @@ export default {
                   on: {
                     click: () => {
                       // 修改信息
+                      
                     }
                   }
                 },
@@ -150,22 +178,26 @@ export default {
         {
           roleName: "John Brown",
           creater: 18,
-          createTime: "New York No. 1 Lake Park"
+          createTime: "New York No. 1 Lake Park",
+          currentPeople: 13
         },
         {
           roleName: "Jim Green",
           creater: 24,
-          createTime: "London No. 1 Lake Park"
+          createTime: "London No. 1 Lake Park",
+          currentPeople: 15
         },
         {
           roleName: "Joe Black",
           creater: 30,
-          createTime: "Sydney No. 1 Lake Park"
+          createTime: "Sydney No. 1 Lake Park",
+          currentPeople: 11
         },
         {
           roleName: "Jon Snow",
           creater: 26,
-          createTime: "Ottawa No. 2 Lake Park"
+          createTime: "Ottawa No. 2 Lake Park",
+          currentPeople: 12
         }
       ]
     };
@@ -187,12 +219,16 @@ export default {
     },
     hideRoleDetailModal() {
       this.detailShow = false;
+    },
+    // 显示成员管理
+    showMember(currentPeople){
+      this.showMemberModal = true;
+      this.memberCount = currentPeople
+    },
+    // 隐藏成员管理
+    hideMember(){
+      this.showMemberModal = false;
     }
   }
 };
 </script>
-
-<style>
-
-</style>
-

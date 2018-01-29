@@ -1,7 +1,14 @@
-<style scoped>
+<style lang="less" scoped>
 .table-top {
   display: flex;
   justify-content: space-between;
+  .add {
+    display: flex;
+    justify-content: space-between;
+    div:last-child {
+      margin-left: 50px;
+    }
+  }
 }
 </style>
 <template>
@@ -36,7 +43,7 @@
           <Row>
             <Col span="4">
             <FormItem label="行政区域：">
-              <Select placeholder="请选择" v-model="formItem.acountState"  size="small">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">海淀区</Option>
                 <Option value="blocked">朝阳区</Option>
                 <Option value="blocked">西城区</Option>
@@ -68,18 +75,21 @@
     </div>
     <div class="data-con">
       <Card>
-        
         <!-- 详情/审核 -->
         <EnterDetails :detailsShow="detailsShow" :isCheck="isCheck" v-if="detailsShow" @hideEnterDetailsModal="hideEnterDetailsModal"></EnterDetails>
         <div class="table-con" style="text-align: right">
           <div class="table-top">
-            <!-- 添加新账号 -->
-          <AddEnter></AddEnter>
-          <!-- 分页插件和表格内容显示 -->
-          <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+            <div class="add">
+              <!-- 添加新账号 -->
+              <AddStore></AddStore>
+              <!-- 新增生活家 -->
+              <AddLiver></AddLiver>
+            </div>
+            <!-- 分页插件和表格内容显示 -->
+            <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
           </div>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
-          
+
           <!-- 如何把两个page组件关联起来？ -->
         </div>
       </Card>
@@ -88,11 +98,13 @@
 </template>
 
 <script>
-import AddEnter from "./components/AddEnter";
+import AddStore from "./components/AddStore";
+import AddLiver from "./components/AddLiver";
 import EnterDetails from "./components/EnterDetails";
 export default {
   components: {
-    AddEnter,
+    AddStore,
+    AddLiver,
     EnterDetails
   },
   data() {

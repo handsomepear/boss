@@ -1,33 +1,28 @@
 <style scoped>
-  .table-top {
+.table-top {
   display: flex;
   justify-content: space-between;
 }
 </style>
 <template>
-  <div class="contract-list">
-    <div class="contract-top">
+  <div class="store-manage">
+    <div class="store-top">
       <Card>
         <Form :label-width="90" ref="contractForm" v-model="formItem" label-position="left">
           <Row>
             <Col span="5">
-            <FormItem label="SPUID：">
+            <FormItem label="合同编号：">
               <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
-            <FormItem label="SKUID：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffPhone" size="small" />
+            <FormItem label="入驻人姓名：">
+              <Input type="text" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
-            <FormItem label="商品名称：">
-              <Input type="text" v-model="formItem.roleName" size="small" />
-            </FormItem>
-            </Col>
-            <Col span="5" offset="1">
-            <FormItem label="库存：">
-              <Input type="text" placeholder="小于等于该数字的商品" v-model="formItem.roleName" size="small" />
+            <FormItem label="销售人员：">
+              <Input type="text" v-model="formItem.roleName" placeholder="请输入销售人员姓名" size="small" />
             </FormItem>
             </Col>
           </Row>
@@ -38,59 +33,43 @@
             </FormItem>
             </Col>
             <Col span="5" offset="1">
-            <FormItem label="创建人：">
-              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small" />
-            </FormItem>
-            </Col>
-            <Col span="5" offset="1">
-            <FormItem label="编辑人：">
+            <FormItem label="店铺联系方式：" :label-width="100">
               <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
-            <Col span="4">
-            <FormItem label="卡类型：">
+            <Col span="5">
+            <FormItem label="商户业态：">
               <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="1">单次卡</Option>
-                <Option value="2">多次卡</Option>
-                <Option value="2">储值卡</Option>
+                <Option value="1">团购代销</Option>
+                <Option value="2">CRM</Option>
               </Select>
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
-            <FormItem label="商品状态：">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="11">待编辑</Option>
-                <Option value="11">待精编</Option>
+            <Col span="5" offset="1">
+            <FormItem label="店铺状态：">
+              <Select placeholder="全部状态" v-model="formItem.acountState" size="small">
                 <Option value="11">待审查</Option>
-                <Option value="12">待上架</Option>
-                <Option value="12">在线</Option>
+                <Option value="12">服务中</Option>
                 <Option value="13">驳回</Option>
-                <Option value="14">临时下架</Option>
+                <Option value="14">暂停服务</Option>
                 <Option value="15">服务到期</Option>
               </Select>
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
-            <FormItem label="商品变更来源：" :label-width="100">
+            <Col span="5" offset="1">
+            <FormItem label="店铺变更来源：" :label-width="100">
               <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">BOSS</Option>
                 <Option value="blocked">商户端</Option>
               </Select>
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
-            <FormItem label="商品类型：">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="active">CRM商品</Option>
-                <Option value="blocked">团购代销商品</Option>
-              </Select>
-            </FormItem>
-            </Col>
           </Row>
           <Row>
-            <Col span="22" offset="1" style="text-align:right">
+            <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
+            <Col span="22" offset="1" style="text-align: right">
             <FormItem>
               <div class="button-con">
                 <Button type="primary" @click="submit">查询</Button>
@@ -105,14 +84,15 @@
     </div>
     <div class="data-con">
       <Card>
-        <!-- 新增店铺 -->
-        
-        <GoodsDetail :detailShow="detailShow" v-if="detailShow" @hideGoodsDetailModal="hideGoodsDetailModal" :isCheck="isCheck"></GoodsDetail>
+        <StoreDetails :detailsShow="detailsShow" v-if="detailsShow" @hideStoreDetailsModal="hideStoreDetailsModal" :isCheck="isCheck"></StoreDetails>
+        <QrcodeModal :qrcodeModalShow="qrcodeModalShow" v-if="qrcodeModalShow" @hideQrcodeModal="hideQrcodeModal"></QrcodeModal>
+        <SaleManage :saleManageShow="saleManageShow" v-if="saleManageShow" @hideSaleManageModal="hideSaleManageModal"></SaleManage>
         <div class="table-con" style="text-align: right">
-          <!-- 分页插件和表格内容显示 -->
           <div class="table-top">
-            <AddGoods></AddGoods>
-             <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+          <!-- 添加新账号 -->
+          <AddStore></AddStore>
+          <!-- 分页插件和表格内容显示 -->
+          <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
           </div>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
           <!-- 如何把两个page组件关联起来？ -->
@@ -123,17 +103,29 @@
 </template>
 
 <script>
-import AddGoods from "./components/AddGoods";
-import GoodsDetail from "./components/GoodsDetail";
+import AddStore from "./components/AddStore";
+import StoreDetails from "./components/StoreDetails";
+import QrcodeModal from "./components/QrcodeModal";
+import SaleManage from "./components/SaleManage";
 export default {
   components: {
-    AddGoods,
-    GoodsDetail
+    AddStore,
+    StoreDetails,
+    QrcodeModal,
+    SaleManage
   },
   data() {
     return {
-      detailShow: false,
+      saleManageShow: false,
+      qrcodeModalShow: false,
       isCheck: false,
+      detailsShow: false,
+      optionsTest: {
+        disabledDate(date) {}
+      },
+      optionsTest1: {
+        disabledDate(date) {}
+      },
       formItem: {
         contractNo: "", // 合同编号
         ownerName: "", // 甲方民称
@@ -154,51 +146,31 @@ export default {
         staffAcounts: [
           // columns设置
           {
-            title: "SPUID",
+            title: "合同编号",
             key: "contractNo"
-          },
-          {
-            title: "SKUID",
-            key: "ownerName"
           },
           {
             title: "店铺名称",
             key: "representative"
           },
           {
-            title: "商品名称",
+            title: "入驻人姓名",
             key: "representativePhone"
           },
           {
-            title: "商品类型",
+            title: "店铺联系方式",
             key: "collaborateModel"
           },
           {
-            title: "卡类型",
+            title: "店铺状态",
             key: "shopName"
           },
           {
-            title: "售价",
-            key: "startDate"
-          },
-          {
-            title: "库存",
-            key: "endDate"
-          },
-          {
-            title: "商品状态",
+            title: "销售人员",
             key: "contractNO"
           },
           {
-            title: "商品变更来源",
-            key: "saler"
-          },
-          {
-            title: "创建人",
-            key: "saler"
-          },
-          {
-            title: "编辑人",
+            title: "店铺变更来源",
             key: "saler"
           },
           {
@@ -247,7 +219,7 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showGoodsCheckModal();
+                          this.showContractCheckModal();
                         }
                       }
                     },
@@ -267,7 +239,7 @@ export default {
                         click() {}
                       }
                     },
-                    "临时下架"
+                    "暂停服务"
                   ),
                   h(
                     "Button",
@@ -281,11 +253,45 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showGoodsDetailModal();
+                          this.showStoreDetailsModal();
                         }
                       }
                     },
                     "详情"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click: () => {
+                          // 将params对象保存到data对象中 然后传递给下面的组件
+                          this.showQrCodeModal();
+                        }
+                      }
+                    },
+                    "直销二维码"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      on: {
+                        click: () => {
+                          this.showSaleManageModal();
+                        }
+                      }
+                    },
+                    "销售管理"
                   )
                 ]
               );
@@ -384,16 +390,33 @@ export default {
       params.row.state = !params.row.state;
     },
     /* 弹出详情页 */
-    showGoodsDetailModal() {
-      this.detailShow = true;
+    showStoreDetailsModal() {
+      this.detailsShow = true;
     },
-    hideGoodsDetailModal() {
+    hideStoreDetailsModal() {
       this.isCheck = false;
-      this.detailShow = false;
+      this.detailsShow = false;
     },
-    showGoodsCheckModal(){
+    /* 审查弹窗 */
+    showContractCheckModal() {
       this.isCheck = true;
-      this.detailShow = true;
+      this.detailsShow = true;
+    },
+    /* 显示直销二维码 */
+    showQrCodeModal() {
+      this.qrcodeModalShow = true;
+    },
+    /* 隐藏二维码弹窗 */
+    hideQrcodeModal() {
+      this.qrcodeModalShow = false;
+    },
+    /* 显示销售管理弹窗 */
+    showSaleManageModal() {
+      this.saleManageShow = true;
+    },
+    /* 隐藏销售管理弹窗 */
+    hideSaleManageModal() {
+      this.saleManageShow = false;
     }
   }
 };

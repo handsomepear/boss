@@ -49,52 +49,24 @@
             </Col>
           </Row>
           <Row>
-            <Col span="4">
-            <FormItem label="宝宝年龄：" :label-width="80">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="11">0岁</Option>
-                <Option value="11">1岁</Option>
-                <Option value="11">2岁</Option>
-                <Option value="11">3岁</Option>
-                <Option value="11">3岁</Option>
-                <Option value="11">5岁</Option>
-                <Option value="11">6岁</Option>
-                <Option value="11">7岁</Option>
-                <Option value="11">8岁</Option>
-                <Option value="11">9岁</Option>
-                <Option value="11">10岁</Option>
-                <Option value="11">11岁</Option>
-                <Option value="11">12岁</Option>
-              </Select>
-            </FormItem>
-            </Col>
-            <Col span="4" offset="1">
-            <FormItem label="宝宝性别：" :label-width="80">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="11">男宝</Option>
-                <Option value="11">女宝</Option>
-                
-              </Select>
-            </FormItem>
-            </Col>
-            <Col span="4" offset="1">
-            <FormItem label="注册来源：" :label-width="80">
+            <Col span="5">
+            <FormItem label="注册来源：" >
               <Select placeholder="请选择" v-model="formItem.acountState"size="small">
                 <Option value="active">后台注册</Option>
                 <Option value="blocked">用户注册</Option>
               </Select>
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
-            <FormItem label="用户类型：" :label-width="80">
+            <Col span="5" offset="1">
+            <FormItem label="用户类型：" >
               <Select placeholder="请选择" v-model="formItem.acountState" size="small">
                 <Option value="active">普通用户</Option>
                 <Option value="blocked">虚拟用户</Option>
               </Select>
             </FormItem>
             </Col>
-            <Col span="4" offset="1">
-            <FormItem label="用户状态：" :label-width="80">
+            <Col span="5" offset="1">
+            <FormItem label="用户状态：" >
               <Select placeholder="请选择" v-model="formItem.acountState"size="small">
                 <Option value="active">正常</Option>
                 <Option value="blocked">冻结</Option>
@@ -193,14 +165,6 @@ export default {
           {
             title: "注册手机号",
             key: "representative"
-          },
-          {
-            title: "宝宝年龄",
-            key: "representativePhone"
-          },
-          {
-            title: "宝宝性别",
-            key: "collaborateModel"
           },
           {
             title: "注册时间",

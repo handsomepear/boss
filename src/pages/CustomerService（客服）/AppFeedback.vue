@@ -1,5 +1,5 @@
 <template>
-  <Button type="success">教育结算</Button>
+  <Button type="success">app反馈</Button>
 </template>
 
 <script>

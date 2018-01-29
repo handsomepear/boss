@@ -25,9 +25,9 @@
 
 <template>
   <div class="add-template">
-    <Button type="primary" @click="showAddEnterModal">新增模板</Button>
+    <Button type="primary" @click="showAddTempModal">新增模板</Button>
     <!-- 添加员工账号 -->
-    <Modal v-model="addEnter" title="新增模板" width="60%" @on-ok="ok" @on-cancel="cancel" :styles="{marginBottom: '100px'}">
+    <Modal v-model="addTemp" title="新增模板" width="60%" @on-ok="ok" @on-cancel="cancel" :styles="{marginBottom: '100px'}">
       <Form :label-width="110" label-position="left">
         <FormItem label="※ 模板名称：">
           <Row>
@@ -39,12 +39,12 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem label="※ 适用业态：">
+        <FormItem label="※ 适用场景：">
           <Row>
             <Col span="4">
-            <Select size="small" placeholder="请选择" transfer>
-              <Option value="chaoyang">游乐</Option>
-              <Option value="haidian">教育</Option>
+            <Select size="small" placeholder="请选择" transfer v-model="Adapter">
+              <Option value="store">店铺</Option>
+              <Option value="liver">生活家</Option>
             </Select>
             </Col>
           </Row>
@@ -63,6 +63,13 @@
           <Row>
             <Col span="4">
             <DatePicker type="date" size="small" transfer></DatePicker>
+            </Col>
+          </Row>
+        </FormItem>
+        <FormItem label="※ 合同内容：">
+          <Row>
+            <Col span="23">
+              <Input type="textarea" :rows="6" />
             </Col>
           </Row>
         </FormItem>
@@ -102,10 +109,11 @@ export default {
   data() {
     return {
       creater: "",
+      Adapter: "",
       show_loading: false,
       file: null,
       address: "",
-      addEnter: false,
+      addTemp: false,
       fullname: "",
       phone: "",
       email: "",
@@ -116,22 +124,22 @@ export default {
   },
   methods: {
     // 弹出新增账号页面
-    showAddEnterModal() {
-      this.addEnter = true;
+    showAddTempModal() {
+      this.addTemp = true;
     },
     // 提交成功
     ok() {
       this.show_loading = true;
       setTimeout(() => {
         this.show_loading = false;
-        this.addEnter = false;
+        this.addTemp = false;
         this.$Message.success("提交成功");
       }, 1000);
     },
     // 取消提交
     cancel() {
       alert("cancel");
-      this.addEnter = false;
+      this.addTemp = false;
     },
     showImg(res, file) {}
   }

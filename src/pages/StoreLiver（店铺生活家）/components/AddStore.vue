@@ -156,8 +156,8 @@
         <FormItem label="介绍视频：">
           <br>
           <Row>
-            <Col span="2">视频链接：</Col>
-            <Col span="16">
+            <Col span="3">视频链接：</Col>
+            <Col span="15">
             <Input v-model="email" type="text" size="small" placeholder="请输入视频链接" />
             </Col>
             <Col span="4" offset="1">

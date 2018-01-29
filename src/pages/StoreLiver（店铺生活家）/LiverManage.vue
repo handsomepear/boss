@@ -1,5 +1,5 @@
 <template>
-  <Button type="success">游乐问询</Button>
+  <Button type="error">生活家管理</Button>
 </template>
 
 <script>

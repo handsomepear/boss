@@ -5,117 +5,116 @@
 }
 </style>
 <template>
-  <div class="contract-list">
-    <div class="contract-top">
-      <Card>
-        <Form :label-width="90" ref="contractForm" v-model="formItem" label-position="left">
-          <Row>
-            <Col span="5">
-            <FormItem label="合同编号：">
-              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
-            </FormItem>
-            </Col>
-            <Col span="5" offset="1">
-            <FormItem label="甲方名称：">
-              <Input type="text" v-model="formItem.staffPhone" size="small" />
-            </FormItem>
-            </Col>
-            <Col span="5" offset="1">
-            <FormItem label="代表人：">
-              <Input type="text" v-model="formItem.roleName" size="small" />
-            </FormItem>
-            </Col>
-            <Col span="5" offset="1">
-            <FormItem label="代表人手机号：" :label-width="100">
-              <Input type="text" v-model="formItem.staffName" size="small" />
-            </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="5">
-            <FormItem label="店铺名称：">
-              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small" />
-            </FormItem>
-            </Col>
-            <Col span="5" offset="1">
-            <FormItem label="销售人员：">
-              <Input type="text" placeholder="请输入销售人员姓名" v-model="formItem.leaderName" size="small" />
-            </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="4">
-            <FormItem label="合作模式：">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small" :transfer="true">
-                <Option value="active">个人合作</Option>
-                <Option value="blocked">机构合作</Option>
-              </Select>
-            </FormItem>
-            </Col>
-            <Col span="4" offset="1">
-            <FormItem label="合同状态：">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="active">待审查</Option>
-                <Option value="blocked">通过</Option>
-                <Option value="blocked">驳回</Option>
-                <Option value="blocked">终止</Option>
-                <Option value="blocked">已到期</Option>
-              </Select>
-            </FormItem>
-            </Col>
-            <Col span="4" offset="1">
-            <FormItem label="合同变更来源：" :label-width="100">
-              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="active">BOSS</Option>
-                <Option value="blocked">商户端</Option>
-              </Select>
-            </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
-            <Col span="6">
-            <FormItem label="合同结束时间（始）：" :label-width="132">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
-            </FormItem>
-            </Col>
-            <Col span="6" offset="1">
-            <FormItem label="合同结束时间（止）：" :label-width="132">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
-            </FormItem>
-            </Col>
-            <Col span="8" offset="1" style="text-align: right">
-            <FormItem>
-              <div class="button-con">
-                <Button type="primary" @click="submit">查询</Button>
-                <Button type="primary" style="margin-left: 20px">重置</Button>
-              </div>
-            </FormItem>
-            </Col>
-          </Row>
-        </Form>
-      </Card>
-    </div>
-    <div class="data-con">
-      <Card>
-
-        <!-- 审查/详情弹窗 -->
-        <ContractDetails :detailsShow="detailsShow" :isCheck="isCheck" v-if="detailsShow" @hideContractDetailsModal="hideContractDetailsModal"></ContractDetails>
-        <!-- 销售人员变更 -->
-        <ChangeSaler :modalsShow="modalsShow" v-if="modalsShow" @hideChangeSalerModal="hideChangeSalerModal"></ChangeSaler>
-        <div class="table-con" style="text-align: right">
-          <div class="table-top">
-            <!-- 添加新账号 -->
-            <AddContract></AddContract>
-            <!-- 分页插件和表格内容显示 -->
-            <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
-          </div>
-          <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
-          <!-- 如何把两个page组件关联起来？ -->
-        </div>
-      </Card>
-    </div>
-  </div>
+	<div class="contract-list">
+		<div class="contract-top">
+			<Card>
+				<Form :label-width="90" ref="contractForm" v-model="formItem" label-position="left">
+					<Row>
+						<Col span="5">
+						<FormItem label="合同编号：">
+							<Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
+						</FormItem>
+						</Col>
+						<Col span="5" offset="1">
+						<FormItem label="甲方名称：">
+							<Input type="text" v-model="formItem.staffPhone" size="small" />
+						</FormItem>
+						</Col>
+						<Col span="5" offset="1">
+						<FormItem label="代表人：">
+							<Input type="text" v-model="formItem.roleName" size="small" />
+						</FormItem>
+						</Col>
+						<Col span="5" offset="1">
+						<FormItem label="代表人手机号：" :label-width="100">
+							<Input type="text" v-model="formItem.staffName" size="small" />
+						</FormItem>
+						</Col>
+					</Row>
+					<Row>
+						<Col span="5">
+						<FormItem label="店铺名称：">
+							<Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small" />
+						</FormItem>
+						</Col>
+						<Col span="5" offset="1">
+						<FormItem label="销售人员：">
+							<Input type="text" placeholder="请输入销售人员姓名" v-model="formItem.leaderName" size="small" />
+						</FormItem>
+						</Col>
+					</Row>
+					<Row>
+						<Col span="4">
+						<FormItem label="合作模式：">
+							<Select placeholder="请选择" v-model="formItem.acountState" size="small" :transfer="true">
+								<Option value="active">个人合作</Option>
+								<Option value="blocked">机构合作</Option>
+							</Select>
+						</FormItem>
+						</Col>
+						<Col span="4" offset="1">
+						<FormItem label="合同状态：">
+							<Select placeholder="请选择" v-model="formItem.acountState" size="small">
+								<Option value="active">待审查</Option>
+								<Option value="blocked">通过</Option>
+								<Option value="blocked">驳回</Option>
+								<Option value="blocked">终止</Option>
+								<Option value="blocked">已到期</Option>
+							</Select>
+						</FormItem>
+						</Col>
+						<Col span="4" offset="1">
+						<FormItem label="合同变更来源：" :label-width="100">
+							<Select placeholder="请选择" v-model="formItem.acountState" size="small">
+								<Option value="active">BOSS</Option>
+								<Option value="blocked">商户端</Option>
+							</Select>
+						</FormItem>
+						</Col>
+					</Row>
+					<Row>
+						<!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
+						<Col span="6">
+						<FormItem label="合同结束时间（始）：" :label-width="132">
+							<DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
+						</FormItem>
+						</Col>
+						<Col span="6" offset="1">
+						<FormItem label="合同结束时间（止）：" :label-width="132">
+							<DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
+						</FormItem>
+						</Col>
+						<Col span="8" offset="1" style="text-align: right">
+						<FormItem>
+							<div class="button-con">
+								<Button type="primary" @click="submit">查询</Button>
+								<Button type="primary" style="margin-left: 20px">重置</Button>
+							</div>
+						</FormItem>
+						</Col>
+					</Row>
+				</Form>
+			</Card>
+		</div>
+		<div class="data-con">
+			<Card>
+				<!-- 审查/详情弹窗 -->
+				<ContractDetails :detailsShow="detailsShow" :isCheck="isCheck" v-if="detailsShow" @hideContractDetailsModal="hideContractDetailsModal"></ContractDetails>
+				<!-- 销售人员变更 -->
+				<ChangeSaler :modalsShow="modalsShow" v-if="modalsShow" @hideChangeSalerModal="hideChangeSalerModal"></ChangeSaler>
+				<div class="table-con" style="text-align: right">
+					<div class="table-top">
+						<!-- 添加新账号 -->
+						<AddContract></AddContract>
+						<!-- 分页插件和表格内容显示 -->
+						<Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+					</div>
+					<Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
+					<!-- 如何把两个page组件关联起来？ -->
+				</div>
+			</Card>
+		</div>
+	</div>
 </template>
 
 <script>

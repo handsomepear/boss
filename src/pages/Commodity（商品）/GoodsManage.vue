@@ -1,5 +1,5 @@
 <style scoped>
-.table-top {
+  .table-top {
   display: flex;
   justify-content: space-between;
 }
@@ -11,72 +11,86 @@
         <Form :label-width="90" ref="contractForm" v-model="formItem" label-position="left">
           <Row>
             <Col span="5">
-            <FormItem label="POS编号：">
-              <Input type="text" v-model="formItem.staffName" size="small" />
+            <FormItem label="SPUID：">
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
-            <FormItem label="SN串号：">
-              <Input type="text" v-model="formItem.staffPhone" size="small" />
+            <FormItem label="SKUID：">
+              <Input type="text" placeholder="可输入部分编号数字" v-model="formItem.staffPhone" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
+            <FormItem label="商品名称：">
+              <Input type="text" v-model="formItem.roleName" size="small" />
+            </FormItem>
+            </Col>
+            <Col span="5" offset="1">
+            <FormItem label="库存：">
+              <Input type="text" placeholder="小于等于该数字的商品" v-model="formItem.roleName" size="small" />
+            </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="5">
             <FormItem label="店铺名称：">
-              <Input type="text" v-model="formItem.roleName" size="small" />
+              <Input type="text" placeholder="该合同下任一店铺名称" v-model="formItem.shopName" size="small" />
             </FormItem>
             </Col>
             <Col span="5" offset="1">
-            <FormItem label="入库人：">
-              <Input type="text" v-model="formItem.roleName" size="small" />
+            <FormItem label="创建人：">
+              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small" />
+            </FormItem>
+            </Col>
+            <Col span="5" offset="1">
+            <FormItem label="编辑人：">
+              <Input type="text" placeholder="可输入部分号码数字" v-model="formItem.leaderName" size="small" />
             </FormItem>
             </Col>
           </Row>
           <Row>
             <Col span="4">
-            <FormItem label="供货商：">
+            <FormItem label="卡类型：">
               <Select placeholder="请选择" v-model="formItem.acountState" size="small">
-                <Option value="1">世麦科技</Option>
-                <Option value="2">联迪科技</Option>
-                <Option value="2">旺POS</Option>
-                <Option value="2">新大陆</Option>
+                <Option value="1">单次卡</Option>
+                <Option value="2">多次卡</Option>
+                <Option value="2">储值卡</Option>
               </Select>
             </FormItem>
             </Col>
             <Col span="4" offset="1">
-            <FormItem label="POS状态：">
-              <Select v-model="formItem.acountState" size="small">
-                <Option value="11">正常</Option>
-                <Option value="12">冻结</Option>
+            <FormItem label="商品状态：">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
+                <Option value="11">待编辑</Option>
+                <Option value="11">待精编</Option>
+                <Option value="11">待审查</Option>
+                <Option value="12">待上架</Option>
+                <Option value="12">在线</Option>
+                <Option value="13">驳回</Option>
+                <Option value="14">临时下架</Option>
+                <Option value="15">服务到期</Option>
+              </Select>
+            </FormItem>
+            </Col>
+            <Col span="4" offset="1">
+            <FormItem label="商品变更来源：" :label-width="100">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
+                <Option value="active">BOSS</Option>
+                <Option value="blocked">商户端</Option>
+              </Select>
+            </FormItem>
+            </Col>
+            <Col span="4" offset="1">
+            <FormItem label="商品类型：">
+              <Select placeholder="请选择" v-model="formItem.acountState" size="small">
+                <Option value="active">CRM商品</Option>
+                <Option value="blocked">团购代销商品</Option>
               </Select>
             </FormItem>
             </Col>
           </Row>
           <Row>
-            <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
-            <Col span="6">
-            <FormItem label="入库时间（始）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
-            </FormItem>
-            </Col>
-            <Col span="6" offset="1">
-            <FormItem label="入库时间（止）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
-            </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <!-- TODO: 后面的选择器要禁用前面选择器日期之前的日期 或者直接使用组件提供的dateRange -->
-            <Col span="6">
-            <FormItem label="租期结束时间（始）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.startDate" :options="optionsTest" size="small"></DatePicker>
-            </FormItem>
-            </Col>
-            <Col span="6" offset="1">
-            <FormItem label="租期结束时间（止）：" :label-width="150">
-              <DatePicker type="date" v-model="formItem.endDate" :options="optionsTest1" size="small"></DatePicker>
-            </FormItem>
-            </Col>
-            <Col span="8" offset="1" style="text-align: right">
+            <Col span="22" offset="1" style="text-align:right">
             <FormItem>
               <div class="button-con">
                 <Button type="primary" @click="submit">查询</Button>
@@ -91,17 +105,17 @@
     </div>
     <div class="data-con">
       <Card>
-       
-        <!-- POS详情 -->
-        <PosDetail :detailShow="detailShow" v-if="detailShow" @hidePosDetailModal="hidePosDetailModal"></PosDetail>
+        <!-- 新增店铺 -->
+        
+        <GoodsDetail :detailShow="detailShow" v-if="detailShow" @hideGoodsDetailModal="hideGoodsDetailModal" :isCheck="isCheck"></GoodsDetail>
         <div class="table-con" style="text-align: right">
-           <div class="table-top">
-             <!-- 入库管理 -->
-          <StoragePos></StoragePos>
           <!-- 分页插件和表格内容显示 -->
-          <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
-           </div>
+          <div class="table-top">
+            <AddGoods></AddGoods>
+             <Page :total="table.totalPage" show-sizer :page-size="table.pageSize" :page-size-opts="table.pageSizeOpts"></Page>
+          </div>
           <Table border :columns="table.staffAcounts" :data="table.staffData" style="margin: 20px 0"></Table>
+          <!-- 如何把两个page组件关联起来？ -->
         </div>
       </Card>
     </div>
@@ -109,22 +123,17 @@
 </template>
 
 <script>
-import StoragePos from './components/StoragePos';
-import PosDetail from './components/PosDetail';
+import AddGoods from "./components/AddGoods";
+import GoodsDetail from "./components/GoodsDetail";
 export default {
   components: {
-    StoragePos,
-    PosDetail
+    AddGoods,
+    GoodsDetail
   },
   data() {
     return {
       detailShow: false,
-      optionsTest: {
-        disabledDate(date) {}
-      },
-      optionsTest1: {
-        disabledDate(date) {}
-      },
+      isCheck: false,
       formItem: {
         contractNo: "", // 合同编号
         ownerName: "", // 甲方民称
@@ -143,46 +152,59 @@ export default {
         pageSize: 15,
         pageSizeOpts: [15, 50, 100],
         staffAcounts: [
+          // columns设置
           {
-            title: "POS编号",
+            title: "SPUID",
             key: "contractNo"
           },
           {
-            title: "供货商",
+            title: "SKUID",
             key: "ownerName"
           },
           {
-            title: "SN串号",
+            title: "店铺名称",
             key: "representative"
           },
           {
-            title: "入库时间",
+            title: "商品名称",
             key: "representativePhone"
           },
           {
-            title: "当前服务店铺名称",
+            title: "商品类型",
             key: "collaborateModel"
           },
           {
-            title: "租期开始时间",
+            title: "卡类型",
             key: "shopName"
           },
           {
-            title: "租期结束时间",
+            title: "售价",
             key: "startDate"
           },
           {
-            title: "POS状态",
+            title: "库存",
             key: "endDate"
           },
           {
-            title: "入库人",
+            title: "商品状态",
             key: "contractNO"
+          },
+          {
+            title: "商品变更来源",
+            key: "saler"
+          },
+          {
+            title: "创建人",
+            key: "saler"
+          },
+          {
+            title: "编辑人",
+            key: "saler"
           },
           {
             title: "操作",
             key: "action",
-            width: 200,
+            width: 250,
             align: "center",
             // 创建row上面的按钮
             render: (h, params) => {
@@ -225,11 +247,11 @@ export default {
                       },
                       on: {
                         click: () => {
-                          this.showEnterDetailsModal();
+                          this.showGoodsCheckModal();
                         }
                       }
                     },
-                    "冻结"
+                    "审查"
                   ),
                   h(
                     "Button",
@@ -242,12 +264,41 @@ export default {
                         "margin-right": "5px"
                       },
                       on: {
-                        click:() => {
-                          this.showPosDetailModal()
+                        click() {}
+                      }
+                    },
+                    "临时下架"
+                  ),
+                  h(
+                    "Button",
+                    {
+                      props: {
+                        type: "info",
+                        size: "small"
+                      },
+                      style: {
+                        "margin-right": "5px"
+                      },
+                      on: {
+                        click: () => {
+                          this.showGoodsDetailModal();
                         }
                       }
                     },
                     "详情"
+                  ),
+                  h('Button', {
+                    props: {
+                      type: "primary",
+                      size: "small"
+                    },
+                    on:{
+                      click: () => {
+                        alert('销售店铺列表管理')
+                      }
+                    }
+                  },
+                  "销售店铺列表管理"
                   )
                 ]
               );
@@ -346,11 +397,16 @@ export default {
       params.row.state = !params.row.state;
     },
     /* 弹出详情页 */
-    showPosDetailModal() {
+    showGoodsDetailModal() {
       this.detailShow = true;
     },
-    hidePosDetailModal() {
+    hideGoodsDetailModal() {
+      this.isCheck = false;
       this.detailShow = false;
+    },
+    showGoodsCheckModal(){
+      this.isCheck = true;
+      this.detailShow = true;
     }
   }
 };

@@ -46,10 +46,10 @@
 
 
 <template>
-  <div class="add-store">
-    <Button type="primary" @click="showAddEnterModal">新增店铺</Button>
+  <div class="add-goods">
+    <Button type="primary" @click="showAddEnterModal">新增商品</Button>
     <!-- 添加员工账号 -->
-    <Modal v-model="addEnter" title="新增店铺" width="60%" :styles="{marginBottom: '100px', minWidth: '800px'}" @on-ok="ok" @on-cancel="cancel">
+    <Modal v-model="addEnter" title="新增商品" width="60%" :styles="{marginBottom: '100px', minWidth: '800px'}" @on-ok="ok" @on-cancel="cancel">
       <Form :label-width="110" label-position="left">
         <FormItem label="复制商品SKUID：">
           <Row>
@@ -61,7 +61,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem label="※ 合同编号：">
+        <FormItem label="※ 供应商合同：">
           <Row>
             <Col span="4">
             <Input v-model="phone" size="small" />
@@ -71,7 +71,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem label="※ 店铺名称：">
+        <FormItem label="※ 供应商店铺：">
           <Row>
             <Col span="4">
             <Input v-model="email" type="text" size="small" />
@@ -116,7 +116,7 @@
                 </Col>
               </Row>
               <div class="cardtype-con">
-                <Row class="row" v-if="cardType === 'single' || cardType === 'more' ">
+                <Row class="row" v-if="cardType === 'single' || cardType === 'more' " key="countCard">
                   <Row style="margin-top: 10px;height: 60px;">
                     <Col>
                     <Checkbox v-model="canUseEcard">该商品可使用储值卡购买</Checkbox>
@@ -140,11 +140,11 @@
                   </Row>
                   </Col>
                 </Row>
-                <Row class="row" v-else>
+                <Row class="row" v-else key="saveCard">
                   <Row style="margin-top:20px">
                     <Col span="4" style="line-height: 24px;">储值即赠送</Col>
                     <Col span="3">
-                    <Input type="number" size="small" />
+                    <InputNumber :min="0" size="small" />
                     </Col>
                     <Col span="1" offset="1" style="line-height: 24px"> 元</Col>
                     <Col span="8">
@@ -157,7 +157,7 @@
                     <Input type="text" size="small" />
                     </Col>
                     <Col span="8" offset="2">
-                    <span class="msg" style="line-height: 24px">只可填写0 ＜ X ≤ 1的正数，精度到0.01</span>
+                    <span class="msg" style="line-height: 24px">只可填写0 < X ≤ 1的正数，精度到0.01</span>
                     </Col>
                   </Row>
                 </Row>

@@ -25,9 +25,9 @@
 
 <template>
   <div class="add-enter">
-    <Button type="primary" @click="showAddEnterModal">新增入驻</Button>
+    <Button type="primary" @click="showAddEnterModal">新增店铺</Button>
     <!-- 添加员工账号 -->
-    <Modal v-model="addEnter" title="新增入驻" width="60%" @on-ok="ok" @on-cancel="cancel" 
+    <Modal v-model="addEnter" title="新增店铺" width="60%" @on-ok="ok" @on-cancel="cancel" 
     :styles="{marginBottom: '100px'}">
       <Form :label-width="110" label-position="left" >
         <FormItem label="※ 入驻人姓名：">
@@ -40,7 +40,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem label="※ 入驻人手机：">
+        <FormItem label="※ 入驻人手机：" >
           <Row>
             <Col span="4">
             <Input v-model="phone" size="small" />
@@ -50,6 +50,7 @@
             </Col>
           </Row>
         </FormItem>
+        <hr style="margin-bottom:24px;">
         <FormItem label="※ 店铺名称：">
           <Row>
             <Col span="4">

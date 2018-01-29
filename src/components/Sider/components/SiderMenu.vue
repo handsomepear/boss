@@ -3,7 +3,7 @@
 </style>
 
 <template>
-  <Menu theme="dark" :active-name="$route.name" @on-select="change" width="200px" style="overflow: auto;" >
+  <Menu theme="dark"  :active-name="$route.name" @on-select="change" width="200px" style="overflow: auto;" >
     <slot name="top"></slot>
     <template v-for="item in menuList">
       <MenuItem v-if="item.children.length <= 1 && !item.isShrink" :name="item.children[0].name" :key="'menuitem' + item.name">
