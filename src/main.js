@@ -9,13 +9,7 @@ import iview from 'iview'
 // import 'iview/src/styles/index.less'
 /* 引入自己的样式 覆盖默认样式 */
 import '@/assets/css/my-iview.less'
-import { fetch, post } from './util/http.js'
-
-// 封装axios的get请求
-Vue.prototype.$fetch = fetch;
-
-// 封装axios的post请求
-Vue.prototype.$post = post;
+import { get, post } from './util/http.js'
 
 Vue.config.productionTip = false
 Vue.use(iview)

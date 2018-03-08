@@ -1,13 +1,13 @@
 
-const config = {
-  serverHost: ''
+let util = {};
+
+
+
+util.title = function(title) {
+  title = title || 'boss';
+  window.document.title = title;
 }
 
-export default {
-  getServerUrl(path){
-    return config.serverHost + path;
-  }
-}
 
 /**
  * 存储localstorage

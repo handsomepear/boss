@@ -1,4 +1,4 @@
-import Main from '@/pages/Main/Main.vue';
+import Main from '@/pages/Main/Main.vue'
 
 // 登录页面
 export const loginRouter = {
@@ -53,110 +53,56 @@ export const otherRouter = {
   redirect: '/home',
   component: Main,
   children: [{
-      path: 'home',
-      name: 'home_index',
-      component: resolve => {
-        require(['@/pages/Home/Home.vue'], resolve)
-      }
-    },
+    path: 'home',
+    name: 'home_index',
+    component: resolve => {
+      require(['@/pages/Home/Home.vue'], resolve)
+    }
+  },
     {
       path: 'own',
       name: 'own',
       component: resolve => {
         require(['@/pages/Own/Own.vue'], resolve)
       }
-    },
+    }
   ]
 }
 
 // 作为Main组件并且在左侧菜单栏里面的路由
 export const appRouters = [
-  // 权限管理
+  // 商户管理
   {
     path: '/authority',
     name: 'authority',
     icon: 'key',
-    title: "权限管理",
+    title: '商户管理',
     component: Main,
     children: [{
-        path: 'role-manage',
-        name: 'roleManage',
-        icon: 'person',
-        title: '角色管理',
-        component: resolve => {
-          require(['@/pages/Authority（权限）/RoleManage.vue'], resolve)
-        }
-      },
-      {
-        path: 'staff-acount',
-        name: 'staffAcount',
-        icon: 'person-stalker',
-        title: '员工账号',
-        component: resolve => {
-          require(['@/pages/Authority（权限）/StaffAcount.vue'], resolve)
-        }
+      path: 'enter-check',
+      name: 'enterCheck',
+      icon: 'ios-checkmark',
+      title: '入驻管理',
+      component: resolve => {
+        require(['@/pages/Contract（合同）/EnterCheck.vue'], resolve)
       }
-    ]
-  },
-  // 合同管理
-  {
-    path: '/contract',
-    name: 'contract',
-    icon: 'clipboard',
-    title: "合同管理",
-    component: Main,
-    children: [{
-        path: 'enter-check',
-        name: 'enterCheck',
-        icon: 'ios-checkmark',
-        title: '入驻审核',
-        component: resolve => {
-          require(['@/pages/Contract（合同）/EnterCheck.vue'], resolve);
-        }
-      },
+    },
       {
         path: 'contract-list',
         name: 'contractList',
         icon: 'ios-list',
-        title: '合同列表',
+        title: '合同管理',
         component: resolve => {
-          require(['@/pages/Contract（合同）/ContractList.vue'], resolve);
+          require(['@/pages/Contract（合同）/ContractList.vue'], resolve)
         }
       },
       {
-        path: 'contract-template',
-        name: 'contractTemplate',
-        icon: 'ios-paper-outline',
-        title: '合同模板',
-        component: resolve => {
-          require(['@/pages/Contract（合同）/ContractTemplate.vue'], resolve);
-        }
-      }
-    ]
-  },
-  // 店铺/生活家
-  {
-    path: '/merchant',
-    name: 'merchant',
-    title: "店铺/生活家",
-    icon: 'ios-home',
-    component: Main,
-    children: [{
         path: 'store-manage',
         name: 'storeManage',
         icon: 'ios-home',
         title: '店铺管理',
         component: resolve => {
           require(['@/pages/StoreLiver（店铺生活家）/StoreManage.vue'], resolve)
-        }
-      },
-      {
-        path: 'liverManage',
-        name: 'liverManage',
-        icon: 'android-person',
-        title: '生活家管理',
-        component: resolve => {
-          require(['@/pages/StoreLiver（店铺生活家）/LiverManage.vue'], resolve)
         }
       }
     ]
@@ -177,13 +123,23 @@ export const appRouters = [
       component: resolve => {
         require(['@/pages/Commodity（商品）/GoodsManage.vue'], resolve)
       }
-    }]
+    },
+      {
+        path: 'category-manage',
+        name: 'categoryManage',
+        icon: 'ios-cart',
+        title: '品类管理',
+        component: resolve => {
+          require(['@/pages/Commodity（商品）/CategoryManage.vue'], resolve)
+        }
+      }
+    ]
   },
-  // 订单管理
+  // 订单结算
   {
     path: '/order',
     name: 'order',
-    title: "订单管理",
+    title: '订单管理',
     icon: 'drag',
     isShrink: true,
     component: Main,
@@ -195,210 +151,168 @@ export const appRouters = [
       component: resolve => {
         require(['@/pages/Order（订单）/OrderManage.vue'], resolve)
       }
-    }]
-  },
-  // 用户管理
-  {
-    path: '/user',
-    name: 'user',
-    title: "用户管理",
-    icon: 'person',
-    isShrink: false,
-    component: Main,
-    children: [{
-      path: 'index',
-      name: 'user_index',
-      icon: 'person-stalker',
-      title: '用户管理',
-      component: resolve => {
-        require(['@/pages/User（用户）/User.vue'], resolve)
+    },
+      {
+        path: 'settlement-manage',
+        name: 'settlementManage',
+        icon: 'ios-pricetags',
+        title: '结算管理',
+        component: resolve => {
+          require(['@/pages/Financial/SettlementManage.vue'], resolve)
+        }
+      },
+      {
+        path: 'refund-manage',
+        name: 'refundManage',
+        title: '退款管理',
+        icon: 'social-yen',
+        component: resolve => {
+          require(['@/pages/Refund（退款）/RefundManage.vue'], resolve)
+        }
       }
-    }]
-  },
-  // 营销中心
-  {
-    path: '/marketing-center',
-    name: 'marketingCenter',
-    title: "营销中心",
-    icon: 'chatbubble-working',
-    component: Main,
-    children: [{
-        path: 'banner-manage',
-        name: 'bannerManage',
-        icon: 'images',
-        title: '用户端Banner',
-        component: resolve => {
-          require(['@/pages/MarketingCenter（营销中心）/bannerManage.vue'], resolve)
-        }
-      },
-      {
-        path: 'livers',
-        name: 'livers',
-        icon: 'android-person',
-        title: '生活家',
-        component: resolve => {
-          require(['@/pages/MarketingCenter（营销中心）/Livers.vue'], resolve)
-        }
-      },
-      {
-        path: 'list-manage',
-        name: 'listManage',
-        icon: 'android-list',
-        title: '列表管理',
-        component: resolve => {
-          require(['@/pages/MarketingCenter（营销中心）/ListManage.vue'], resolve)
-        }
-      },
-      {
-        path: 'marketing-config',
-        name: 'marketingConfig',
-        icon: 'speakerphone',
-        title: '营销配置',
-        component: resolve => {
-          require(['@/pages/MarketingCenter（营销中心）/MarketingConfig.vue'], resolve)
-        }
-      },
-      {
-        path: 'push-manage',
-        name: 'pushManage',
-        icon: 'chatbox',
-        title: '推送管理',
-        component: resolve => {
-          require(['@/pages/MarketingCenter（营销中心）/PushManage.vue'], resolve)
-        }
-      },
-      {
-        path: 'message-manage',
-        name: 'messageManage',
-        icon: 'chatbox-working',
-        title: '短信管理',
-        component: resolve => {
-          require(['@/pages/MarketingCenter（营销中心）/MessageManage.vue'], resolve)
-        }
-      },
-      {
-        path: 'H5-marketing',
-        name: 'H5Marketing',
-        icon: 'social-html5',
-        title: 'H5营销',
-        component: resolve => {
-          require(['@/pages/MarketingCenter（营销中心）/H5Marketing.vue'], resolve)
-        }
-      },
     ]
   },
   // 运营管理
   {
     path: '/operation',
     name: 'operation',
-    title: "运营管理",
+    title: '运营管理',
     icon: 'ios-people',
     component: Main,
     isShrink: true,
     children: [{
-      path: 'export-file',
-      name: 'exportFile',
-      icon: 'ios-download-outline',
-      title: '导出文件',
+      path: 'banner-manage',
+      name: 'bannerManage',
+      icon: 'images',
+      title: 'Banner管理',
       component: resolve => {
-        require(['@/pages/Operation（运营）/ExportFile.vue'], resolve)
+        require(['@/pages/MarketingCenter（营销中心）/bannerManage.vue'], resolve)
       }
-    }]
-  },
-  // 客服管理
-  {
-    path: '/custom-service',
-    name: 'customService',
-    icon: 'social-whatsapp',
-    title: "客服管理",
-    isShrink: true,
-    component: Main,
-    children: [{
-      path: 'app-feedback',
-      name: 'appFeedback',
-      icon: 'android-apps',
-      title: 'APP反馈',
-      component: resolve => {
-        require(['@/pages/CustomerService（客服）/AppFeedback.vue'], resolve)
-      }
-    }]
-  },
-  // 财务管理
-  {
-    path: '/financial-manage',
-    name: 'financialManage',
-    title: "财务管理",
-    icon: 'calculator',
-    isShrink: true,
-    component: Main,
-    children: [{
-      path: 'settlement-manage',
-      name: 'settlementManage',
-      icon: 'ios-pricetags',
-      title: '结算管理',
-      component: resolve => {
-        require(['@/pages/Financial/SettlementManage.vue'], resolve)
-      }
-    }]
-  },
-  // 退款管理
-  {
-    path: '/refund',
-    name: 'refund',
-    title: "退款管理",
-    icon: 'social-yen-outline',
-    isShrink: true,
-    component: Main,
-    children: [{
-      path: 'refund-manage',
-      name: 'refundManage',
-      title: '退款管理',
-      icon: 'social-yen',
-      component: resolve => {
-        require(['@/pages/Refund（退款）/RefundManage.vue'], resolve)
-      }
-    }]
-  },
-  // 系统配置
-  {
-    path: '/system',
-    name: 'system',
-    title: "系统配置",
-    icon: 'gear-b',
-    isShrink: true,
-    component: Main,
-    children: [{
-        path: 'app-manage',
-        name: 'appManage',
-        title: 'app管理',
-        icon: 'social-apple',
+    },
+      {
+        path: 'liverManage',
+        name: 'liverManage',
+        icon: 'android-person',
+        title: '生活家管理',
         component: resolve => {
-          require(['@/pages/System/AppManage.vue'], resolve)
+          require(['@/pages/StoreLiver（店铺生活家）/LiverManage.vue'], resolve)
         }
       },
       {
-        path: 'app-version',
-        name: 'appVersion',
-        title: 'app版本',
-        icon: 'social-vimeo',
+        path: 'listPits',
+        name: 'listPits',
+        icon: 'android-person',
+        title: '列表坑位',
         component: resolve => {
-          require(['@/pages/System/AppVersion.vue'], resolve)
+          require(['@/pages/Operation（运营）/ListPits.vue'], resolve)
         }
       },
       {
-        path: 'wechat-config',
-        name: 'wechatConfig',
-        title: '微信配置',
-        
-        icon: 'chatbubbles',
-
+        path: 'export-file',
+        name: 'exportFile',
+        icon: 'ios-download-outline',
+        title: '导出文件',
         component: resolve => {
-          require(['@/pages/System/WechatConfig.vue'], resolve)
+          require(['@/pages/Operation（运营）/ExportFile.vue'], resolve)
         }
       }
     ]
   },
-];
+  // 用户管理
+  {
+    path: '/user',
+    name: 'user',
+    title: '用户管理',
+    icon: 'person',
+    isShrink: true,
+    component: Main,
+    children: [{
+      path: 'user-manage',
+      name: 'userManage',
+      icon: 'person-stalker',
+      title: '用户管理',
+      component: resolve => {
+        require(['@/pages/User（用户）/User.vue'], resolve)
+      }
+    },
+      {
+        path: 'vip-manage',
+        name: 'vipManage',
+        icon: 'person-stalker',
+        title: '会员管理',
+        component: resolve => {
+          require(['@/pages/User（用户）/VipManage.vue'], resolve)
+        }
+      }
+    ]
+  },
+  // APP管理
+  {
+    path: '/app',
+    name: 'app',
+    title: 'App管理',
+    icon: 'person',
+    isShrink: false,
+    component: Main,
+    children: [{
+      path: 'app-manage',
+      name: 'appManage',
+      title: 'app管理',
+      icon: 'social-apple',
+      component: resolve => {
+        require(['@/pages/System/AppManage.vue'], resolve)
+      }
+    },
+      {
+        path: 'app-version',
+        name: 'appVersion',
+        title: '版本管理',
+        icon: 'social-vimeo',
+        component: resolve => {
+          require(['@/pages/System/AppVersion.vue'], resolve)
+        }
+      }
+    ]
+  },
+  // 系统管理
+  {
+    path: '/system',
+    name: 'system',
+    title: '系统管理',
+    icon: 'gear-b',
+    isShrink: true,
+    component: Main,
+    children: [
+      {
+        path: 'staff-acount',
+        name: 'staffAcount',
+        icon: 'person-stalker',
+        title: '员工账号',
+        component: resolve => {
+          require(['@/pages/Authority（权限）/StaffAcount.vue'], resolve)
+        }
+      },
+      {
+        path: 'role-manage',
+        name: 'roleManage',
+        icon: 'person',
+        title: '角色管理',
+        component: resolve => {
+          require(['@/pages/Authority（权限）/RoleManage.vue'], resolve)
+        }
+      },
+      {
+        path: 'contract-template',
+        name: 'contractTemplate',
+        icon: 'ios-paper-outline',
+        title: '合同模板',
+        component: resolve => {
+          require(['@/pages/Contract（合同）/ContractTemplate.vue'], resolve)
+        }
+      }
+    ]
+  }
+]
 
 export const routes = [
   loginRouter,
@@ -406,6 +320,6 @@ export const routes = [
   page403,
   ...appRouters,
   page404,
-  page500,
+  page500
 
 ]

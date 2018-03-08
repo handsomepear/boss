@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import _user from '@/api/user-service.js'
 export default {
   name: "app",
   methods: {},

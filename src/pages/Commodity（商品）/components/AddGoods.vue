@@ -84,7 +84,7 @@
         <FormItem label="※ 商品类型：">
           <Row>
             <Col span="4">
-            <Select size="small">
+            <Select size="small" transfer>
               <Option value="CRM">CRM商品</Option>
               <Option value="CRM">团购代销商品</Option>
             </Select>
@@ -175,11 +175,11 @@
                     <Col span="20">
                     <Row v-if="goodsExpire === 'absolute'">
                       <Col span="4" style="line-height: 30px">
-                      <DatePicker type="date" size="small"></DatePicker>
+                      <DatePicker type="date" transfer size="small"></DatePicker>
                       </Col>
                       <Col span="1" style="text-align: center;line-height: 30px;">至</Col>
                       <Col span="4" style="line-height: 30px">
-                      <DatePicker type="date" size="small"></DatePicker>
+                      <DatePicker type="date" transfer size="small"></DatePicker>
                       </Col>
                       <Col span="12" offset="1" style="line-height: 30px;">
                       <span class="msg">该商品必须在该时间内使用，超出有效期，则不可再用</span>
@@ -249,7 +249,7 @@
                 <Row>
                   <Col span="5" style="line-height: 24px">※ 退款类型：</Col>
                   <Col span="6">
-                  <Select size="small">
+                  <Select size="small" transfer>
                     <Option value="">不可退</Option>
                     <Option value="">未使用退</Option>
                     <Option value="">过期退</Option>

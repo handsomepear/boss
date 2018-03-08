@@ -125,6 +125,7 @@
 <script>
 import AddGoods from "./components/AddGoods";
 import GoodsDetail from "./components/GoodsDetail";
+import _goods from '@/api/goods-service';
 export default {
   components: {
     AddGoods,
@@ -172,10 +173,6 @@ export default {
           {
             title: "商品类型",
             key: "collaborateModel"
-          },
-          {
-            title: "卡类型",
-            key: "shopName"
           },
           {
             title: "售价",
@@ -310,7 +307,6 @@ export default {
           {
             entername: "handsonzps",
             phone: "135****1234",
-            shopname: "链家",
             area: "昌平区",
             applydate: "2017-12-25",
             checkdate: "2017-12-25",
@@ -321,7 +317,6 @@ export default {
           {
             entername: "handsonzps",
             phone: "135****1234",
-            shopname: "链家",
             area: "昌平区",
             applydate: "2017-12-25",
             checkdate: "2017-12-25",
@@ -332,7 +327,6 @@ export default {
           {
             entername: "handsonzps",
             phone: "135****1234",
-            shopname: "链家",
             area: "昌平区",
             applydate: "2017-12-25",
             checkdate: "2017-12-25",
@@ -343,7 +337,6 @@ export default {
           {
             entername: "handsonzps",
             phone: "135****1234",
-            shopname: "链家",
             area: "昌平区",
             applydate: "2017-12-25",
             checkdate: "2017-12-25",
@@ -408,6 +401,12 @@ export default {
       this.isCheck = true;
       this.detailShow = true;
     }
+  },
+  mounted(){
+    _goods.getGoodsList({pageNum: 1, pageSize: this.table.pageSize})
+      .then(res => {
+        console.log(res);
+      })
   }
 };
 </script>

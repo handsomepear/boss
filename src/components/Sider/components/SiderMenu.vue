@@ -6,10 +6,12 @@
   <Menu theme="dark"  :active-name="$route.name" @on-select="change" width="200px" style="overflow: auto;" >
     <slot name="top"></slot>
     <template v-for="item in menuList">
+      <!-- 一级菜单直接就跳页面 -->
       <MenuItem v-if="item.children.length <= 1 && !item.isShrink" :name="item.children[0].name" :key="'menuitem' + item.name">
-      <Icon :type="item.icon" :size="iconSize" :key="'menuicon' + item.name"></Icon>
-      <span class="layout-text" :key="'title' + item.name">{{ item.title }}</span>
+        <Icon :type="item.icon" :size="iconSize" :key="'menuicon' + item.name"></Icon>
+        <span class="layout-text" :key="'title' + item.name">{{ item.title }}</span>
       </MenuItem>
+      <!-- 二级菜单只有一个 -->
       <Submenu v-if="(item.children.length > 1) || item.isShrink" :name="item.name" :key="item.name">
         <template slot="title">
           <Icon :type="item.icon" :size="iconSize"></Icon>
@@ -17,8 +19,8 @@
         </template>
         <template v-for="child in item.children" v-if="child.title !== 'empty'">
           <MenuItem :name="child.name" :key="'menuitem' + child.name">
-          <Icon :type="child.icon" :size="iconSize" :key="'icon' + child.name"></Icon>
-          <span class="layout-text" :key="'title' + child.name">{{ child.title }}</span>
+            <Icon :type="child.icon" :size="iconSize" :key="'icon' + child.name"></Icon>
+            <span class="layout-text" :key="'title' + child.name">{{ child.title }}</span>
           </MenuItem>
         </template>
       </Submenu>

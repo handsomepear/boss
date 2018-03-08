@@ -7,10 +7,10 @@
     <div class="sidebar-menu-con" :style="{'width': shrink ? '60px' : '200px',overflow: shrink ? 'visible' : 'auto'}">
       <Sider :shrink="shrink">
         <div slot="top" class="logo-con" v-show="!shrink">
-          <a href="javascript:;" class="logo">BOSS</a>
+          <a href="javascript:;" class="logo">有盐生活</a>
         </div>
         <div slot="top" class="logo-con" v-show="shrink">
-          <a href="javascript:;" class="logo">B</a>
+          <a href="javascript:;" class="logo">盐</a>
         </div>
       </Sider>
     </div>
