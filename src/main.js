@@ -9,7 +9,6 @@ import iview from 'iview'
 // import 'iview/src/styles/index.less'
 /* 引入自己的样式 覆盖默认样式 */
 import '@/assets/css/my-iview.less'
-import { get, post } from './util/http.js'
 
 Vue.config.productionTip = false
 Vue.use(iview)

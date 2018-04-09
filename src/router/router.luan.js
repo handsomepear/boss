@@ -1,4 +1,4 @@
-import Main from '@/views/Main/Main.vue';
+import Main from '@/pages/Main/Main.vue'
 
 // 登录页面
 export const loginRouter = {
@@ -8,9 +8,9 @@ export const loginRouter = {
     title: 'login - 登录'
   },
   component: resolve => {
-    require(['@/views/Login/Login.vue'], resolve);
+    require(['@/pages/Login/Login.vue'], resolve)
   }
-};
+}
 
 // 错误页面
 export const page403 = {
@@ -20,9 +20,9 @@ export const page403 = {
     title: '403-权限不足'
   },
   component: resolve => {
-    require(['@/views/Errors/403.vue'], resolve);
+    require(['@/pages/Errors/403.vue'], resolve)
   }
-};
+}
 
 export const page404 = {
   path: '/*',
@@ -31,9 +31,9 @@ export const page404 = {
     title: '404-页面不存在'
   },
   component: resolve => {
-    require(['@/views/Errors/404.vue'], resolve);
+    require(['@/pages/Errors/404.vue'], resolve)
   }
-};
+}
 
 export const page500 = {
   path: '/500',
@@ -42,9 +42,9 @@ export const page500 = {
     title: '500-服务端错误'
   },
   component: resolve => {
-    require(['@/views/Errors/500.vue'], resolve);
+    require(['@/pages/Errors/500.vue'], resolve)
   }
-};
+}
 
 // 作为Main组件但是不在左侧菜单栏里面的路由
 export const otherRouter = {
@@ -52,50 +52,48 @@ export const otherRouter = {
   name: 'otherRouter',
   redirect: '/home',
   component: Main,
-  children: [
-    {
-      path: 'home',
-      name: 'home_index',
-      component: resolve => {
-        require(['@/views/Home/Home.vue'], resolve);
-      }
-    },
+  children: [{
+    path: 'home',
+    name: 'home_index',
+    component: resolve => {
+      require(['@/pages/Home/Home.vue'], resolve)
+    }
+  },
     {
       path: 'own',
       name: 'own',
       component: resolve => {
-        require(['@/views/Own/Own.vue'], resolve);
+        require(['@/pages/Own/Own.vue'], resolve)
       }
     }
   ]
-};
+}
 
 // 作为Main组件并且在左侧菜单栏里面的路由
 export const appRouters = [
   // 商户管理
   {
-    path: '/merchant',
-    name: 'merchant',
+    path: '/authority',
+    name: 'authority',
     icon: 'key',
     title: '商户管理',
     component: Main,
-    children: [
-      {
-        path: 'enter-check',
-        name: 'enterCheck',
-        icon: 'ios-checkmark',
-        title: '入驻管理',
-        component: resolve => {
-          require(['@/views/Merchant/EnterCheck.vue'], resolve);
-        }
-      },
+    children: [{
+      path: 'enter-check',
+      name: 'enterCheck',
+      icon: 'ios-checkmark',
+      title: '入驻管理',
+      component: resolve => {
+        require(['@/pages/Contract（合同）/EnterCheck.vue'], resolve)
+      }
+    },
       {
         path: 'contract-list',
         name: 'contractList',
         icon: 'ios-list',
         title: '合同管理',
         component: resolve => {
-          require(['@/views/Merchant/ContractList.vue'], resolve);
+          require(['@/pages/Contract（合同）/ContractList.vue'], resolve)
         }
       },
       {
@@ -104,7 +102,7 @@ export const appRouters = [
         icon: 'ios-home',
         title: '店铺管理',
         component: resolve => {
-          require(['@/views/Merchant/StoreManage.vue'], resolve);
+          require(['@/pages/StoreLiver（店铺生活家）/StoreManage.vue'], resolve)
         }
       }
     ]
@@ -117,23 +115,22 @@ export const appRouters = [
     title: '商品管理',
     isShrink: true,
     component: Main,
-    children: [
-      {
-        path: 'goods-manage',
-        name: 'goodsManage',
-        icon: 'ios-cart',
-        title: '商品管理',
-        component: resolve => {
-          require(['@/views/Commodity商品/GoodsManage.vue'], resolve);
-        }
-      },
+    children: [{
+      path: 'goods-manage',
+      name: 'goodsManage',
+      icon: 'ios-cart',
+      title: '商品管理',
+      component: resolve => {
+        require(['@/pages/Commodity（商品）/GoodsManage.vue'], resolve)
+      }
+    },
       {
         path: 'category-manage',
         name: 'categoryManage',
-        icon: 'ios-keypad',
+        icon: 'ios-cart',
         title: '品类管理',
         component: resolve => {
-          require(['@/views/Commodity商品/CategoryManage.vue'], resolve);
+          require(['@/pages/Commodity（商品）/CategoryManage.vue'], resolve)
         }
       }
     ]
@@ -146,23 +143,22 @@ export const appRouters = [
     icon: 'drag',
     isShrink: true,
     component: Main,
-    children: [
-      {
-        path: 'order-manage',
-        name: 'orderManage',
-        icon: 'document',
-        title: '订单管理',
-        component: resolve => {
-          require(['@/views/Order订单/OrderManage.vue'], resolve);
-        }
-      },
+    children: [{
+      path: 'order-manage',
+      name: 'orderManage',
+      icon: 'document',
+      title: '订单管理',
+      component: resolve => {
+        require(['@/pages/Order（订单）/OrderManage.vue'], resolve)
+      }
+    },
       {
         path: 'settlement-manage',
         name: 'settlementManage',
         icon: 'ios-pricetags',
         title: '结算管理',
         component: resolve => {
-          require(['@/views/Order订单/SettlementManage.vue'], resolve);
+          require(['@/pages/Financial/SettlementManage.vue'], resolve)
         }
       },
       {
@@ -171,7 +167,7 @@ export const appRouters = [
         title: '退款管理',
         icon: 'social-yen',
         component: resolve => {
-          require(['@/views/Order订单/RefundManage.vue'], resolve);
+          require(['@/pages/Refund（退款）/RefundManage.vue'], resolve)
         }
       }
     ]
@@ -184,32 +180,31 @@ export const appRouters = [
     icon: 'ios-people',
     component: Main,
     isShrink: true,
-    children: [
+    children: [{
+      path: 'banner-manage',
+      name: 'bannerManage',
+      icon: 'images',
+      title: 'Banner管理',
+      component: resolve => {
+        require(['@/pages/MarketingCenter（营销中心）/bannerManage.vue'], resolve)
+      }
+    },
       {
-        path: 'banner-manage',
-        name: 'bannerManage',
-        icon: 'images',
-        title: 'Banner管理',
-        component: resolve => {
-          require(['@/views/Operation运营/bannerManage.vue'], resolve);
-        }
-      },
-      {
-        path: 'liver-manage',
+        path: 'liverManage',
         name: 'liverManage',
         icon: 'android-person',
         title: '生活家管理',
         component: resolve => {
-          require(['@/views/Operation运营/LiverManage.vue'], resolve);
+          require(['@/pages/StoreLiver（店铺生活家）/LiverManage.vue'], resolve)
         }
       },
       {
-        path: 'list-pits',
+        path: 'listPits',
         name: 'listPits',
-        icon: 'ios-list',
+        icon: 'android-person',
         title: '列表坑位',
         component: resolve => {
-          require(['@/views/Operation运营/ListPits.vue'], resolve);
+          require(['@/pages/Operation（运营）/ListPits.vue'], resolve)
         }
       },
       {
@@ -218,7 +213,7 @@ export const appRouters = [
         icon: 'ios-download-outline',
         title: '导出文件',
         component: resolve => {
-          require(['@/views/Operation运营/ExportFile.vue'], resolve);
+          require(['@/pages/Operation（运营）/ExportFile.vue'], resolve)
         }
       }
     ]
@@ -231,23 +226,22 @@ export const appRouters = [
     icon: 'person',
     isShrink: true,
     component: Main,
-    children: [
-      {
-        path: 'user-manage',
-        name: 'userManage',
-        icon: 'person-stalker',
-        title: '用户管理',
-        component: resolve => {
-          require(['@/views/User/User.vue'], resolve);
-        }
-      },
+    children: [{
+      path: 'user-manage',
+      name: 'userManage',
+      icon: 'person-stalker',
+      title: '用户管理',
+      component: resolve => {
+        require(['@/pages/User（用户）/User.vue'], resolve)
+      }
+    },
       {
         path: 'vip-manage',
         name: 'vipManage',
-        icon: 'android-star',
+        icon: 'person-stalker',
         title: '会员管理',
         component: resolve => {
-          require(['@/views/User/VipManage.vue'], resolve);
+          require(['@/pages/User（用户）/VipManage.vue'], resolve)
         }
       }
     ]
@@ -257,26 +251,25 @@ export const appRouters = [
     path: '/app',
     name: 'app',
     title: 'App管理',
-    icon: 'iphone',
+    icon: 'person',
     isShrink: false,
     component: Main,
-    children: [
-      {
-        path: 'app-manage',
-        name: 'appManage',
-        title: 'app管理',
-        icon: 'social-apple',
-        component: resolve => {
-          require(['@/views/App/AppManage.vue'], resolve);
-        }
-      },
+    children: [{
+      path: 'app-manage',
+      name: 'appManage',
+      title: 'app管理',
+      icon: 'social-apple',
+      component: resolve => {
+        require(['@/pages/System/AppManage.vue'], resolve)
+      }
+    },
       {
         path: 'app-version',
         name: 'appVersion',
         title: '版本管理',
         icon: 'social-vimeo',
         component: resolve => {
-          require(['@/views/App/AppVersion.vue'], resolve);
+          require(['@/pages/System/AppVersion.vue'], resolve)
         }
       }
     ]
@@ -296,7 +289,7 @@ export const appRouters = [
         icon: 'person-stalker',
         title: '员工账号',
         component: resolve => {
-          require(['@/views/System/StaffAcount.vue'], resolve);
+          require(['@/pages/Authority（权限）/StaffAcount.vue'], resolve)
         }
       },
       {
@@ -305,7 +298,7 @@ export const appRouters = [
         icon: 'person',
         title: '角色管理',
         component: resolve => {
-          require(['@/views/System/RoleManage.vue'], resolve);
+          require(['@/pages/Authority（权限）/RoleManage.vue'], resolve)
         }
       },
       {
@@ -314,12 +307,12 @@ export const appRouters = [
         icon: 'ios-paper-outline',
         title: '合同模板',
         component: resolve => {
-          require(['@/views/System/ContractTemplate.vue'], resolve);
+          require(['@/pages/Contract（合同）/ContractTemplate.vue'], resolve)
         }
       }
     ]
   }
-];
+]
 
 export const routes = [
   loginRouter,
@@ -328,4 +321,5 @@ export const routes = [
   ...appRouters,
   page404,
   page500
-];
+
+]

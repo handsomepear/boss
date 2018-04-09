@@ -1,6 +1,8 @@
 <template>
   <div id="main" class="app-main">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -10,7 +12,7 @@ export default {
   name: "app",
   methods: {},
   components: {},
-  created(){
+  created() {
     
   }
 };
